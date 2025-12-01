@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_language_bg" />
+
+    <!--    layoutActionBar-->
+    <FrameLayout
+        android:id="@+id/layoutActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            android:id="@+id/actionBar"
+            layout="@layout/layout_actionbar" />
+    </FrameLayout>
+
+    <!--    imvAppName-->
+    <ImageView
+        android:id="@+id/imvAppName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/img_app_name"
+        app:layout_constraintTop_toBottomOf="@id/layoutActionBar" />
+
+    <!--    scvMain-->
+    <ScrollView
+        android:id="@+id/scvMain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="82dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imvAppName">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--            gl05-->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl05"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.08" />
+
+            <!--            gl063-->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl063"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.91" />
+
+            <!--            btnCreate-->
+            <ImageView
+                android:id="@+id/btnCreate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_home_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            tv1-->
+            <com.oc.christmas.ocmaker.create.avatar.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/londrina_solid_regular"
+                android:gravity="center"
+                android:paddingStart="16dp"
+                android:text="@string/character_maker"
+                android:textColor="#DD4747"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnCreate"
+                app:layout_constraintEnd_toEndOf="@+id/gl063"
+                app:layout_constraintTop_toTopOf="@+id/btnCreate"
+                app:outerStrokeColor="@color/white"
+                app:outerStrokeWidth="1.5dp"
+                 />
+
+            <!--            btnQuickMaker-->
+            <ImageView
+                android:id="@+id/btnQuickMaker"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_home_2"
+                app:layout_constraintTop_toBottomOf="@+id/btnCreate" />
+
+            <!--            tv2-->
+            <com.oc.christmas.ocmaker.create.avatar.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tv2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:fontFamily="@font/londrina_solid_regular"
+                android:gravity="start|center_vertical"
+                android:paddingStart="16dp"
+                android:text="@string/quick_maker"
+                android:textColor="#FF8400"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnQuickMaker"
+                app:layout_constraintEnd_toEndOf="@+id/btnQuickMaker"
+                app:layout_constraintStart_toEndOf="@id/gl05"
+                app:layout_constraintTop_toTopOf="@+id/btnQuickMaker"
+                app:outerStrokeColor="@color/white"
+                app:outerStrokeWidth="1.5dp" />
+
+            <!--            btnMyAlbum-->
+            <ImageView
+                android:id="@+id/btnMyAlbum"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_home_3"
+                app:layout_constraintTop_toBottomOf="@+id/btnQuickMaker" />
+
+            <!--            tv3-->
+            <com.oc.christmas.ocmaker.create.avatar.core.custom.text.DoubleStrokeTextView
+                android:id="@+id/tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:fontFamily="@font/londrina_solid_regular"
+                android:gravity="start|center_vertical"
+                android:paddingStart="16dp"
+                android:text="@string/my_character"
+                android:textColor="#FFB600"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btnMyAlbum"
+                app:layout_constraintEnd_toStartOf="@+id/gl063"
+                app:layout_constraintTop_toTopOf="@+id/btnMyAlbum"
+                app:outerStrokeColor="@color/white"
+                app:strokeJoinStyle="miter"
+                app:strokeMiter="5dp"
+                android:layout_marginEnd="10dp"
+                app:outerStrokeWidth="1.5dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <!--    flNativeCollab-->
+    <FrameLayout
+        android:id="@+id/flNativeCollab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <include layout="@layout/ads_shimmer_collap_native" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
