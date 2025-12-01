@@ -125,10 +125,12 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
             actionBar.apply {
                 btnActionBarLeft.tap { confirmExit() }
                 btnActionBarCenter.tap { handleReset() }
-                btnActionBarRight.tap { handleSave() }
+                btnActionBarCenterRight.tap { viewModel.setIsFlip() }
+                binding.actionBar.btnActionBarRightText.tap {
+                    handleSave()
+                }
             }
             btnRandom.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { handleRandomAllLayer() } }
-            btnFlip.tap { viewModel.setIsFlip() }
             btnColor.tap { handleStatusColor() }
             btnHide.tap { viewModel.setIsHideView() }
         }
@@ -139,8 +141,11 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
         binding.actionBar.apply {
             setImageActionBar(btnActionBarLeft, R.drawable.ic_back)
             setImageActionBar(btnActionBarCenter, R.drawable.ic_reset)
-            setImageActionBar(btnActionBarRight, R.drawable.ic_next)
+            setImageActionBar(btnActionBarCenterRight, R.drawable.ic_flip)
+            binding.actionBar.btnActionBarRightText.visible()
+            binding.actionBar.btnActionBarRight.invisible()
         }
+
     }
 
     private fun initRcv() {

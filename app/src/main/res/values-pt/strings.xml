@@ -65,7 +65,7 @@
     <string name="no_item_here">Nenhum item aqui</string>
     <string name="quick_maker">Criador Rápido</string>
     <string name="my_character">Meu personagem</string>
-    <string name="make_character">Faça personagem</string>
+    <string name="category">Faça personagem</string>
     <string name="hello_blank_fragment">Olá fragmento em branco</string>
     <string name="no_current_history">Sem histórico atual</string>
     <string name="add_to_whatsapp">Adicionar ao WhatsApp</string>

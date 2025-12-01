@@ -75,7 +75,7 @@
     <string name="no_item_here">No Item Here</string>
     <string name="quick_maker">Quick Maker</string>
     <string name="my_character">My Character</string>
-    <string name="make_character">Make Character</string>
+    <string name="category">Category</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_current_history">No current history</string>

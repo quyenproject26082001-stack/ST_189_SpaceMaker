@@ -9,9 +9,10 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/img_app_bg" />
+        app:layout_constraintBottom_toBottomOf="@id/gl056"
+        android:src="@drawable/img_cus" />
 
     <!-- layoutActionBar -->
     <FrameLayout
@@ -51,6 +52,7 @@
         android:layout_height="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
+        android:visibility="invisible"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_flip"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +65,7 @@
         android:layout_height="32dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
+        android:visibility="invisible"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_show"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,8 +114,8 @@
     <!-- btnRandom -->
     <ImageView
         android:id="@+id/btnRandom"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_margin="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:src="@drawable/ic_random"
@@ -124,7 +127,7 @@
         android:id="@+id/rcvLayer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#FFBFBF"
+        android:background="#291985"
         android:layerType="hardware"
         android:paddingHorizontal="9.5dp"
         android:paddingTop="16dp"
@@ -140,7 +143,7 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_marginBottom="80dp"
-        android:background="@color/red_BA"
+        android:background="#291985"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <!--        rcvNavigation-->
