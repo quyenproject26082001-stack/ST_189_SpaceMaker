@@ -95,7 +95,7 @@ object AssetHelper {
         val customList = ArrayList<CustomizeModel>()
         val assetManager = context.assets
 
-        // "character_1, character_2,..."
+        // "data1, character_2,..."
         val characterList = assetManager.list(AssetsKey.DATA)
         val sortedCharacter = MediaHelper.sortAsset(characterList)
         Log.d("nbhieu", "----------------------------------------------------------------------------------")
@@ -126,7 +126,7 @@ object AssetHelper {
                 val positionNavigation = position[1].toInt() - 1
 
                 // Lấy folder màu hoặc lấy ảnh nếu không có màu, lấy ảnh navigation
-                // data/character_1/1.30
+                // data/data1/1.30
                 val folderOrImageList = assetManager.list("${AssetsKey.DATA}/${character}/${sortedLayer[i]}")
                 val folderOrImageSortedList =
                     MediaHelper.sortAsset(folderOrImageList)?.toCollection(ArrayList()) ?: arrayListOf()

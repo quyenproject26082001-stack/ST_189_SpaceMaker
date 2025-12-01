@@ -50,6 +50,9 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
                         } else {
                             binding.actionBar.btnActionBarLeft.visible()
                             binding.actionBar.tvCenter.visible()
+                            binding.actionBar.btnActionBarRight.setImageResource(R.drawable.ic_done_settings)
+                            binding.btnBackground.setImageResource(R.drawable.img_setting)
+
                         }
                     }
                 }

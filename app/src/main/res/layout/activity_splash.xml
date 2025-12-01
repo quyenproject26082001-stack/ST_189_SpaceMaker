@@ -13,23 +13,9 @@
         android:scaleType="centerCrop"
         android:src="@drawable/img_splash_bg" />
 
-    <!--    tvTop-->
-    <ImageView
-        android:id="@+id/tvTop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/img_app_name"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@drawable/img_splash_bottom"
-        app:layout_constraintTop_toBottomOf="@+id/tvTop" />
+
 
     <!-- tvDes -->
     <TextView
@@ -41,7 +27,7 @@
         android:fontFamily="@font/montserrat_italic"
         android:gravity="center"
         android:text="@string/this_action_can_contain_ads"
-        android:textColor="#CCFFFFFF"
+        android:textColor="#FFFFFF"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,6 +48,7 @@
             android:layout_gravity="center"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
+            app:lottie_colorFilter="@color/white"
             app:lottie_rawRes="@raw/lottie_splash" />
 
     </FrameLayout>

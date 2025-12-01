@@ -91,15 +91,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="20dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardBackgroundColor="#F61B1B"
+                    app:cardCornerRadius="8dp"
+                    app:cardBackgroundColor="#291985"
                     app:cardElevation="0dp">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/roboto_medium"
+                        android:fontFamily="@font/montserrat_bold"
                         android:gravity="center"
                         android:text="@string/rate"
                         android:textAllCaps="false"
@@ -111,12 +111,12 @@
                     android:id="@+id/btnCancel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
+                    android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
                     android:paddingVertical="15dp"
                     android:text="@string/exit"
                     android:textAllCaps="false"
-                    android:textColor="#A9B0BE"
+                    android:textColor="#291985"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

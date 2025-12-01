@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Christmas Oc Maker: Xmas PFP</string>
     <string name="go_to_setting_message">The app needs this permission</string>
     <string name="settings">Settings</string>
     <string name="this_action_can_contain_ads">This action can contain ads</string>
@@ -7,9 +6,9 @@
     <string name="next">Next</string>
     <string name="language">Language</string>
 
-    <string name="title_1">Make Character</string>
-    <string name="title_2">Character Diversity</string>
-    <string name="title_3">Variety Items</string>
+    <string name="title_1">Create your own avatar however you like</string>
+    <string name="title_2">Diverse Unique Categories</string>
+    <string name="title_3">Great Variety Of Items</string>
 
     <string name="permission">Permission</string>
     <string name="storage">Storage</string>
@@ -76,7 +75,7 @@
     <string name="no_item_here">No Item Here</string>
     <string name="quick_maker">Quick Maker</string>
     <string name="my_character">My Character</string>
-    <string name="make_character">Make Character</string>
+    <string name="category">Category</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_current_history">No current history</string>

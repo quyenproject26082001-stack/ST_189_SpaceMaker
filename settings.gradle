@@ -42,5 +42,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ST190_Christmas OC Maker"
+rootProject.name = "ST189_SpaceMaker"
 include ':app'

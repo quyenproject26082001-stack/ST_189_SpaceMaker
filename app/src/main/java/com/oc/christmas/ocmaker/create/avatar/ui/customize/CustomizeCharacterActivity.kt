@@ -125,10 +125,12 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
             actionBar.apply {
                 btnActionBarLeft.tap { confirmExit() }
                 btnActionBarCenter.tap { handleReset() }
-                btnActionBarRight.tap { handleSave() }
+                btnActionBarCenterRight.tap { viewModel.setIsFlip() }
+                binding.actionBar.btnActionBarRightText.tap {
+                    handleSave()
+                }
             }
             btnRandom.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { handleRandomAllLayer() } }
-            btnFlip.tap { viewModel.setIsFlip() }
             btnColor.tap { handleStatusColor() }
             btnHide.tap { viewModel.setIsHideView() }
         }
@@ -139,8 +141,12 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
         binding.actionBar.apply {
             setImageActionBar(btnActionBarLeft, R.drawable.ic_back)
             setImageActionBar(btnActionBarCenter, R.drawable.ic_reset)
-            setImageActionBar(btnActionBarRight, R.drawable.ic_next)
+            setImageActionBar(btnActionBarCenterRight, R.drawable.ic_flip)
+          btnActionBarRightText.visible()
+          btnActionBarRight.invisible()
+          tvRightText.isSelected =true
         }
+
     }
 
     private fun initRcv() {
@@ -383,7 +389,7 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
     }
 
     private fun confirmExit() {
-        val dialog = YesNoDialog(this, R.string.exit, R.string.haven_t_saved_it_yet_do_you_want_to_exit)
+        val dialog = YesNoDialog(this, R.string.exit_cus, R.string.haven_t_saved_it_yet_do_you_want_to_exit)
         LanguageHelper.setLocale(this)
         dialog.show()
         dialog.onYesClick = {

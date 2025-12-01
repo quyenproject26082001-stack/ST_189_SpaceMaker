@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Christmas Oc Maker: Xmas PFP</string>
     <string name="go_to_setting_message">ऐप को इस अनुमति की आवश्यकता है</string>
     <string name="settings">सेटिंग्स</string>
     <string name="this_action_can_contain_ads">इस क्रिया में विज्ञापन शामिल हो सकते हैं</string>
@@ -66,7 +65,7 @@
     <string name="no_item_here">यहां कोई वस्तु नहीं</string>
     <string name="quick_maker">त्वरित निर्माता</string>
     <string name="my_character">मेरा चरित्र</string>
-    <string name="make_character">चरित्र बनाओ</string>
+    <string name="category">चरित्र बनाओ</string>
     <string name="hello_blank_fragment">नमस्कार रिक्त अंश</string>
     <string name="no_current_history">कोई वर्तमान इतिहास नहीं</string>
     <string name="add_to_whatsapp">व्हाट्सएप में जोड़ें</string>

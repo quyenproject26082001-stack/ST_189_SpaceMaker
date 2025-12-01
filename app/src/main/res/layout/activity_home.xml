@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/img_app_bg" />
+        android:src="@drawable/img_language_bg" />
 
     <!--    layoutActionBar-->
     <FrameLayout
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                app:layout_constraintGuide_percent="0.08" />
 
             <!--            gl063-->
             <androidx.constraintlayout.widget.Guideline
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.63" />
+                app:layout_constraintGuide_percent="0.91" />
 
             <!--            btnCreate-->
             <ImageView
@@ -76,24 +76,22 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!--            tv1-->
-            <com.oc.christmas.ocmaker.create.avatar.core.custom.text.StrokeTextView
+            <com.oc.christmas.ocmaker.create.avatar.core.custom.text.DoubleStrokeTextView
                 android:id="@+id/tv1"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:fontFamily="@font/bangers_regular"
-                android:gravity="start|center_vertical"
+                android:fontFamily="@font/londrina_solid_regular"
+                android:gravity="center"
                 android:paddingStart="16dp"
                 android:text="@string/character_maker"
-                android:textColor="@color/white"
+                android:textColor="#DD4747"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="@+id/btnCreate"
                 app:layout_constraintEnd_toEndOf="@+id/gl063"
-                app:layout_constraintStart_toStartOf="@+id/btnCreate"
                 app:layout_constraintTop_toTopOf="@+id/btnCreate"
-                app:strokeColor="@color/red_BA"
-                app:strokeJoinStyle="miter"
-                app:strokeMiter="5dp"
-                app:strokeWidth="1.3dp" />
+                app:outerStrokeColor="@color/white"
+                app:outerStrokeWidth="1.5dp"
+                 />
 
             <!--            btnQuickMaker-->
             <ImageView
@@ -101,30 +99,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/img_home_2"
                 app:layout_constraintTop_toBottomOf="@+id/btnCreate" />
 
             <!--            tv2-->
-            <com.oc.christmas.ocmaker.create.avatar.core.custom.text.StrokeTextView
+            <com.oc.christmas.ocmaker.create.avatar.core.custom.text.DoubleStrokeTextView
                 android:id="@+id/tv2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:fontFamily="@font/bangers_regular"
+                android:fontFamily="@font/londrina_solid_regular"
                 android:gravity="start|center_vertical"
                 android:paddingStart="16dp"
                 android:text="@string/quick_maker"
-                android:textColor="@color/white"
+                android:textColor="#FF8400"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="@+id/btnQuickMaker"
                 app:layout_constraintEnd_toEndOf="@+id/btnQuickMaker"
                 app:layout_constraintStart_toEndOf="@id/gl05"
                 app:layout_constraintTop_toTopOf="@+id/btnQuickMaker"
-                app:strokeColor="@color/red_BA"
-                app:strokeJoinStyle="miter"
-                app:strokeMiter="5dp"
-                app:strokeWidth="1.3dp" />
+                app:outerStrokeColor="@color/white"
+                app:outerStrokeWidth="1.5dp" />
 
             <!--            btnMyAlbum-->
             <ImageView
@@ -132,30 +128,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="8dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/img_home_3"
                 app:layout_constraintTop_toBottomOf="@+id/btnQuickMaker" />
 
             <!--            tv3-->
-            <com.oc.christmas.ocmaker.create.avatar.core.custom.text.StrokeTextView
+            <com.oc.christmas.ocmaker.create.avatar.core.custom.text.DoubleStrokeTextView
                 android:id="@+id/tv3"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:fontFamily="@font/bangers_regular"
+                android:fontFamily="@font/londrina_solid_regular"
                 android:gravity="start|center_vertical"
                 android:paddingStart="16dp"
                 android:text="@string/my_character"
-                android:textColor="@color/white"
+                android:textColor="#FFB600"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="@+id/btnMyAlbum"
                 app:layout_constraintEnd_toStartOf="@+id/gl063"
-                app:layout_constraintStart_toStartOf="@+id/btnMyAlbum"
                 app:layout_constraintTop_toTopOf="@+id/btnMyAlbum"
-                app:strokeColor="@color/red_BA"
+                app:outerStrokeColor="@color/white"
                 app:strokeJoinStyle="miter"
                 app:strokeMiter="5dp"
-                app:strokeWidth="1.3dp" />
+                android:layout_marginEnd="10dp"
+                app:outerStrokeWidth="1.5dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -22,14 +22,18 @@ class BottomNavigationCustomizeAdapter(private val context: Context) :
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: NavigationModel, position: Int) = with(binding) {
-            val color = if (item.isSelected) R.color.yellow_F6 else R.color.white
 
-            vFocus.setBackgroundColor(context.getColor(color))
+            if (item.isSelected) {
+                vFocus.setBackgroundResource(R.drawable.bg_bottom_navi)
+            } else {
+                vFocus.setBackgroundColor(context.getColor(R.color.white))
+            }
 
             loadImage(root, item.imageNavigation, imvImage)
 
             root.tap { onItemClick.invoke(position) }
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BottomNavViewHolder {

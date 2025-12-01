@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Christmas Oc Maker: Xmas PFP</string>
+    <string name="app_name" translatable="false">App nay Tram Test</string>
     <string name="go_to_setting_message">The app needs this permission</string>
     <string name="settings">Settings</string>
     <string name="this_action_can_contain_ads">This action can contain ads</string>
@@ -7,9 +7,9 @@
     <string name="next">Next</string>
     <string name="language">Language</string>
 
-    <string name="title_1">Make Character</string>
-    <string name="title_2">Character Diversity</string>
-    <string name="title_3">Variety Items</string>
+    <string name="title_1">Create your own avatar however you like</string>
+    <string name="title_2">Diverse Unique Categories</string>
+    <string name="title_3">Great Variety Of Items</string>
 
     <string name="permission">Permission</string>
     <string name="storage">Storage</string>
@@ -26,26 +26,27 @@
     <string name="privacy_policy"><![CDATA[Privacy & Policy]]></string>
 
     <string name="zero_star_title">Do you like the app?</string>
-    <string name="zero_star">Let us know your experience</string>
+    <string name="zero_star">I need your love</string>
 
-    <string name="one_star_title">Oh, no!</string>
-    <string name="one_star">Please give us some feedback</string>
+    <string name="one_star_title">Little buddy made me cry</string>
+    <string name="one_star">I will cry all day</string>
 
-    <string name="two_star_title">Oh, no!</string>
-    <string name="two_star">Please give us some feedback</string>
+    <string name="two_star_title">I’m a little sad</string>
+    <string name="two_star">I will not eat rice today</string>
 
-    <string name="three_star_title">Oh, no!</string>
-    <string name="three_star">Please give us some feedback</string>
+    <string name="three_star_title">Great job little buddy</string>
+    <string name="three_star">I know you won\'t let me be sad</string>
 
-    <string name="four_star_title">We love you too!</string>
-    <string name="four_star">Thanks for your feedback</string>
+    <string name="four_star_title">You are so handsome</string>
+    <string name="four_star">The prince is so handsome</string>
 
-    <string name="five_star_title">We love you too!</string>
-    <string name="five_star">Thanks for your feedback</string>
+    <string name="five_star_title">I love you so much</string>
+    <string name="five_star">let\'s get married</string>
 
     <string name="rate_us_0">You have not rated it yet!</string>
     <string name="rate">Rate</string>
     <string name="exit">Exit</string>
+    <string name="exit_cus">Exit your customize</string>
     <string name="have_rated">Thank you for rate our app</string>
     <string name="share">Share</string>
     <string name="delete">Delete</string>
@@ -72,11 +73,11 @@
     <string name="are_you_sure_you_want_to_delete_the_image">Are you sure you want to delete the image?</string>
     <string name="haven_t_saved_it_yet_do_you_want_to_exit">Haven’t saved it yet, do you want to exit?</string>
     <string name="change_your_whole_design_are_you_sure">Do you want to reset all?</string>
-    <string name="character_maker">Character Maker</string>
+    <string name="character_maker">SPACE CUTIES \n  MAKER</string>
     <string name="no_item_here">No Item Here</string>
-    <string name="quick_maker">Quick Maker</string>
-    <string name="my_character">My Character</string>
-    <string name="make_character">Make Character</string>
+    <string name="quick_maker">QUICK MIX</string>
+        <string name="my_character">MY WORK</string>
+    <string name="category">Category</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_current_history">No current history</string>

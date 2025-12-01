@@ -13,12 +13,12 @@ android {
         applicationId "com.oc.christmas.ocmaker.create.avatar"
         minSdk 24
         targetSdk 36
-        versionCode 3
-        versionName "1.0.2"
+        versionCode 1
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         def formattedDate = new Date().format('MM.dd.yyyy')
-        archivesBaseName = "ST190_Christmas OC Maker_v${versionName}_${formattedDate}"
+        archivesBaseName = "ST189_SpaceMaker_v${versionName}_${formattedDate}"
     }
 
     buildTypes {

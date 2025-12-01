@@ -53,11 +53,11 @@ class PermissionActivity : BaseActivity<ActivityPermissionBinding>() {
         val textRes = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) R.string.to_access_13 else R.string.to_access
 
         binding.txtPer.text = TextUtils.concat(
-            createColoredText(R.string.allow, R.color.red_BA),
+            createColoredText(R.string.allow, R.color.white),
             " ",
-            createColoredText(R.string.app_name, R.color.red_BA),
+            createColoredText(R.string.app_name, R.color.white),
             " ",
-            createColoredText(textRes, R.color.red_BA)
+            createColoredText(textRes, R.color.white)
         )
     }
 

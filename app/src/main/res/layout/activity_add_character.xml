@@ -38,9 +38,12 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/img_app_bg" />
+        android:src="@drawable/img_cus"
+        app:layout_constraintBottom_toTopOf="@id/flFunction"
+
+        />
 
     <!--    flActionBar-->
     <FrameLayout

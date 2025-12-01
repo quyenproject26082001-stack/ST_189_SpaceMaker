@@ -22,16 +22,35 @@ class LanguageAdapter(val context: Context) : BaseAdapter<LanguageModel, ItemLan
             loadImage(root, item.flag, imvFlag, false)
             tvLang.text = item.name
 
-            val (ratio, color) = if (item.activate) {
-                R.drawable.ic_tick_lang to context.getColor(R.color.white)
+            // Áp gradient trực tiếp vào text
+
+            val ratio = if (item.activate) {
+                R.drawable.ic_tick_lang
             } else {
-                R.drawable.ic_not_tick_lang to context.getColor(R.color.black)
+                R.drawable.ic_not_tick_lang
+            }
+            tvLang.post {
+                if (tvLang.paint.shader == null) {
+                    val shader = android.graphics.LinearGradient(
+                        0f,
+                        tvLang.height.toFloat(),
+                        0f,
+                        0f,
+                        intArrayOf(
+                            android.graphics.Color.parseColor("#2641D7"),
+                            android.graphics.Color.parseColor("#8FFFFD")
+                        ),
+                        null,
+                        android.graphics.Shader.TileMode.CLAMP
+                    )
+                    tvLang.paint.shader = shader
+                    tvLang.invalidate()
+                }
             }
             loadImage(root, ratio, btnRadio, false)
 
-            flMain.setBackgroundResource(if (item.activate) R.drawable.bg_16_stroke_yellow_f6_solid_red_ba else R.drawable.bg_16_solid_white)
+            flMain.setBackgroundResource(if (item.activate) R.drawable.bg_16_stroke_yellow_f6_solid_red_ba else R.drawable.bg_16_stroke_yellow_f6_solid_red_ba)
 
-            tvLang.setTextColor(color)
 
             root.tap {
                 onItemClick.invoke(item.code)

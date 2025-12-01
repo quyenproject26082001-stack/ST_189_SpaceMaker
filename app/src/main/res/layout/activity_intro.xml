@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/img_app_bg" />
+        android:src="@drawable/img_language_bg" />
 
     <!--    vpgTutorial-->
     <androidx.viewpager2.widget.ViewPager2
@@ -33,7 +33,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="20dp"
-        app:dotsColor="#FFF0D7"
+        app:dotsColor="#FFFFFF"
         app:dotsCornerRadius="8dp"
         app:dotsSize="8dp"
         app:dotsSpacing="3dp"
@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnNext"
         app:layout_constraintStart_toStartOf="parent"
         app:progressMode="false"
-        app:selectedDotColor="@color/yellow_F6" />
+        app:selectedDotColor="#6DDDD4" />
 
     <!--    btnNext-->
     <TextView
@@ -49,10 +49,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:fontFamily="@font/inter_regular"
+        android:fontFamily="@font/londrina_solid_regular"
         android:padding="3dp"
         android:text="@string/next"
-        android:textColor="@color/white"
+        android:textColor="#6DDDD4"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/native_ads" />

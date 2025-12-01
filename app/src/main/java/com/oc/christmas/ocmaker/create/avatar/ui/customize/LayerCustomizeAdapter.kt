@@ -30,8 +30,12 @@ class LayerCustomizeAdapter(val context: Context) : ListAdapter<ItemNavCustomMod
                     setShimmer(DataLocal.shimmer)
                 }
 
-                val status = if (item.isSelected) R.drawable.bg_10_stroke_red else R.drawable.bg_10_stroke_yellow
-                vFocus.setBackgroundResource(status)
+                if (item.isSelected) {
+                    vFocus.visible()
+                    vFocus.setBackgroundResource(R.drawable.bg_10_stroke_yellow)
+                } else {
+                    vFocus.gone()
+                }
 
                 when (item.path) {
                     AssetsKey.NONE_LAYER -> {

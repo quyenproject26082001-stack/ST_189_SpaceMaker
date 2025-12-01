@@ -71,7 +71,7 @@ class ChooseCharacterActivity : BaseActivity<ActivityChooseCharacterBinding>() {
     override fun initActionBar() {
         binding.actionBar.apply {
             setImageActionBar(btnActionBarLeft, R.drawable.ic_back)
-            setTextActionBar(tvCenter, getString(R.string.make_character))
+            setTextActionBar(tvCenter, getString(R.string.category))
         }
     }
 

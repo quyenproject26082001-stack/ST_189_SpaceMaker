@@ -150,7 +150,9 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
             actionBar.apply {
                 btnActionBarLeft.tap { confirmExit() }
                 btnActionBarCenter.tap { confirmReset() }
-                btnActionBarRight.tap { handleSave() }
+                btnActionBarRightText.tap {
+                    handleSave()
+                }
             }
             btnBackgroundImage.tap { viewModel.setTypeBackground(ValueKey.IMAGE_BACKGROUND) }
             btnBackgroundColor.tap { viewModel.setTypeBackground(ValueKey.COLOR_BACKGROUND) }
@@ -218,6 +220,11 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
             setImageActionBar(btnActionBarLeft, R.drawable.ic_back)
             setImageActionBar(btnActionBarCenter, R.drawable.ic_reset)
             setImageActionBar(btnActionBarRight, R.drawable.ic_save)
+            btnActionBarRightText.visible()
+            tvRightText.isSelected =true
+            tvRightText.text = getString(R.string.save)
+
+
         }
     }
 
