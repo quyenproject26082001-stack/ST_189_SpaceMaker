@@ -46,7 +46,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/native_ads" />
     <!--    cvType-->
-    <FrameLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/cvType"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -54,7 +54,8 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/layoutActionBar"
         app:strokeColor="@color/transparent"
-        app:strokeWidth="0dp">
+        app:strokeWidth="0dp"
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -74,10 +75,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/selected_tab"
                     />
 
+                <TextView
+                    android:id="@+id/subTabMyAvatar"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:visibility="gone"
+                    android:background="@drawable/un_selected_tab_sub"
+                    />
 
+                <!--                imvFocusMyAvatar (nền khi chọn)-->
+                <ImageView
+                    android:id="@+id/imvFocusMyAvatar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/selected_tab"
+                    android:visibility="visible" />
 
                 <!--                tvMyAvatar-->
                 <TextView
@@ -111,9 +127,11 @@
                     />
 
                 <TextView
+                    android:id="@+id/subTabMyDesign"
                     android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="start"
+                    android:visibility="visible"
                     android:background="#291985"
                     />
                 <!--                imvFocusMyDesign (nền xanh khi chọn)-->
@@ -124,7 +142,7 @@
                     android:scaleType="fitXY"
                     android:scaleX="1"
                     android:src="@drawable/un_selected_tab"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
 
                 <!--                tvMyDesign-->
                 <TextView
@@ -135,14 +153,14 @@
                     android:fontFamily="@font/londrina_solid_regular"
                     android:gravity="center"
                     android:text="@string/my_design"
-                    android:textColor="#808080"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
             </FrameLayout>
 
         </LinearLayout>
 
-    </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
     <!--    lnlBottom-->
     <androidx.appcompat.widget.LinearLayoutCompat

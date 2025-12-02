@@ -75,16 +75,14 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
                         viewModel.typeStatus.collect { type ->
                             if (type != -1) {
                                 val fragment = if (type == ValueKey.AVATAR_TYPE) {
-                                    imvFocusMyAvatar.visible()
-                                    imvFocusMyDesign.gone()
-                                    tvMyAvatar.setTextColor(getColor(R.color.white))
-                                    tvMyDesign.setTextColor(getColor(R.color.colorPrimary))
+                                    // MyAvatar selected
+                                    setupSelectedTab(btnMyAvatar, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
+                                    setupUnselectedTab(btnMyDesign, tvMyDesign, imvFocusMyDesign, subTabMyDesign, isLeftTab = false)
                                     MyAvatarFragment()
                                 } else {
-                                    imvFocusMyAvatar.gone()
-                                    imvFocusMyDesign.visible()
-                                    tvMyAvatar.setTextColor(getColor(R.color.colorPrimary))
-                                    tvMyDesign.setTextColor(getColor(R.color.white))
+                                    // MyDesign selected
+                                    setupSelectedTab(btnMyDesign, tvMyDesign, imvFocusMyDesign, subTabMyDesign, isLeftTab = false)
+                                    setupUnselectedTab(btnMyAvatar, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
                                     MyDesignFragment()
                                 }
                                 startFragment(fragment)
@@ -245,5 +243,58 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
     override fun onRestart() {
         super.onRestart()
         initNativeCollab()
+    }
+
+    private fun setupSelectedTab(
+        tabView: View,
+        textView: android.widget.TextView,
+        focusImage: android.widget.ImageView,
+        subTab: View,
+        isLeftTab: Boolean
+    ) {
+        // Set weight = 1.6
+        val params = tabView.layoutParams as android.widget.LinearLayout.LayoutParams
+        params.weight = 1.6f
+        params.topMargin = 0
+        tabView.layoutParams = params
+
+        // Set text size = 20sp, color = white
+        textView.textSize = 20f
+        textView.setTextColor(getColor(R.color.white))
+
+        // Show selected_tab drawable (no flip for selected)
+        focusImage.setImageResource(R.drawable.selected_tab)
+        focusImage.scaleX = 1f
+        focusImage.visible()
+
+        // Hide subTab
+        subTab.gone()
+    }
+
+    private fun setupUnselectedTab(
+        tabView: View,
+        textView: android.widget.TextView,
+        focusImage: android.widget.ImageView,
+        subTab: View,
+        isLeftTab: Boolean
+    ) {
+        // Set weight = 1
+        val params = tabView.layoutParams as android.widget.LinearLayout.LayoutParams
+        params.weight = 1f
+        params.topMargin = UnitHelper.dpToPx(this, 16f).toInt()
+        tabView.layoutParams = params
+
+        // Set text size = 16sp, color = colorPrimary
+        textView.textSize = 16f
+        textView.setTextColor(getColor(R.color.colorPrimary))
+
+        // Show un_selected_tab drawable
+        focusImage.setImageResource(R.drawable.un_selected_tab)
+        // Flip horizontally if on left side
+        focusImage.scaleX = if (isLeftTab) -1f else 1f
+        focusImage.visible()
+
+        // Show subTab
+        subTab.visible()
     }
 }
