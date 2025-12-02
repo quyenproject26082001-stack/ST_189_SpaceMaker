@@ -77,10 +77,14 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
                                 val fragment = if (type == ValueKey.AVATAR_TYPE) {
                                     imvFocusMyAvatar.visible()
                                     imvFocusMyDesign.gone()
+                                    tvMyAvatar.setTextColor(getColor(R.color.white))
+                                    tvMyDesign.setTextColor(getColor(R.color.colorPrimary))
                                     MyAvatarFragment()
                                 } else {
                                     imvFocusMyAvatar.gone()
                                     imvFocusMyDesign.visible()
+                                    tvMyAvatar.setTextColor(getColor(R.color.colorPrimary))
+                                    tvMyDesign.setTextColor(getColor(R.color.white))
                                     MyDesignFragment()
                                 }
                                 startFragment(fragment)

@@ -23,19 +23,38 @@
             layout="@layout/layout_actionbar" />
     </FrameLayout>
 
+
+
+    <!--    native_ads-->
+    <FrameLayout
+        android:id="@+id/native_ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/cvType">
+        <include layout="@layout/ads_native_collap_banner_shimmer" />
+    </FrameLayout>
+
+    <!--    frmList-->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frmList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="82dp"
+        android:background="#291985"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/native_ads" />
     <!--    cvType-->
-    <com.google.android.material.card.MaterialCardView
+    <FrameLayout
         android:id="@+id/cvType"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_height="48dp"
+        app:cardBackgroundColor="@android:color/transparent"
         android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/transparent"
-        app:cardCornerRadius="100dp"
-        app:cardElevation="0dp"
         app:layout_constraintTop_toBottomOf="@id/layoutActionBar"
-        app:strokeColor="@color/red_BA"
-        app:strokeWidth="2dp">
+        app:strokeColor="@color/transparent"
+        app:strokeWidth="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,15 +66,18 @@
                 android:id="@+id/btnMyAvatar"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="164">
+                android:layout_weight="1.6">
 
-                <!--                imvFocusMyAvatar-->
+                <!--                imvBgMyAvatar (nền trắng)-->
                 <ImageView
-                    android:id="@+id/imvFocusMyAvatar"
+                    android:id="@+id/imvBgMyAvatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/bg_btn_type_selected" />
+                    android:src="@drawable/selected_tab"
+                    />
+
+
 
                 <!--                tvMyAvatar-->
                 <TextView
@@ -63,35 +85,46 @@
                     style="@style/single_marquee"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/nunito_bold"
+                    android:fontFamily="@font/londrina_solid_regular"
                     android:gravity="center"
                     android:text="@string/my_avatar"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
             </FrameLayout>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@color/red_BA" />
 
             <!--            btnMyDesign-->
             <FrameLayout
                 android:id="@+id/btnMyDesign"
                 android:layout_width="0dp"
+                android:translationY="0dp"
+                android:layout_marginTop="16dp"
                 android:layout_height="match_parent"
-                android:layout_weight="164">
+                android:layout_weight="1">
 
-                <!--                imvFocusMyDesign-->
+                <!--                imvBgMyDesign (nền trắng)-->
+                <ImageView
+                    android:id="@+id/imvBgMyDesign"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    />
+
+                <TextView
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:background="#291985"
+                    />
+                <!--                imvFocusMyDesign (nền xanh khi chọn)-->
                 <ImageView
                     android:id="@+id/imvFocusMyDesign"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
-                    android:src="@drawable/bg_btn_type_selected"
-                    android:visibility="gone" />
+                    android:scaleX="1"
+                    android:src="@drawable/un_selected_tab"
+                    android:visibility="visible" />
 
                 <!--                tvMyDesign-->
                 <TextView
@@ -99,39 +132,17 @@
                     style="@style/single_marquee"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:fontFamily="@font/nunito_bold"
+                    android:fontFamily="@font/londrina_solid_regular"
                     android:gravity="center"
                     android:text="@string/my_design"
-                    android:textColor="@color/white"
+                    android:textColor="#808080"
                     android:textSize="16sp" />
 
             </FrameLayout>
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
-
-    <!--    native_ads-->
-    <FrameLayout
-        android:id="@+id/native_ads"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@id/cvType">
-
-        <include layout="@layout/ads_native_collap_banner_shimmer" />
     </FrameLayout>
-
-    <!--    frmList-->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/frmList"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="82dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/native_ads" />
-
 
     <!--    lnlBottom-->
     <androidx.appcompat.widget.LinearLayoutCompat
