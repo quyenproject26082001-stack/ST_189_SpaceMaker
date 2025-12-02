@@ -4,6 +4,9 @@ import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -258,9 +261,18 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
         params.topMargin = 0
         tabView.layoutParams = params
 
-        // Set text size = 20sp, color = white
+        // Set text size = 20sp
         textView.textSize = 20f
-        textView.setTextColor(getColor(R.color.white))
+
+        // Apply gradient color from top to bottom (using fixed height based on text size)
+        val textHeight = textView.lineHeight.toFloat()
+        val shader = LinearGradient(
+            0f, 0f, 0f, textHeight,
+            Color.parseColor("#8FFFFD"),
+            Color.parseColor("#2641D7"),
+            Shader.TileMode.CLAMP
+        )
+        textView.paint.shader = shader
 
         // Show selected_tab drawable (no flip for selected)
         focusImage.setImageResource(R.drawable.selected_tab)
@@ -286,6 +298,8 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
 
         // Set text size = 16sp, color = colorPrimary
         textView.textSize = 16f
+        // Remove gradient shader and set solid color
+        textView.paint.shader = null
         textView.setTextColor(getColor(R.color.colorPrimary))
 
         // Show un_selected_tab drawable
