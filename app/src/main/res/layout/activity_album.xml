@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/img_app_bg" />
+        android:src="@drawable/img_mywork" />
     <!-- layoutActionBar -->
     <FrameLayout
         android:id="@+id/layoutActionBar"

@@ -40,13 +40,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_12_solid_white"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="@font/londrina_solid_regular"
             android:gravity="center"
             android:paddingHorizontal="33dp"
             android:paddingVertical="12dp"
             android:text="@string/no_current_history"
             android:textColor="@color/red_BA"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:translationY="-10dp" />
     </LinearLayout>
 

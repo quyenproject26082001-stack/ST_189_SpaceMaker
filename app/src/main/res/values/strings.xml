@@ -80,7 +80,7 @@
     <string name="category">Category</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="no_current_history">No current history</string>
+    <string name="no_current_history">You don’t have any character</string>
     <string name="add_to_whatsapp">Add To WhatsApp</string>
     <string name="add_to_telegram">Add To Telegram</string>
     <string name="my_avatar">My Avatar</string>
