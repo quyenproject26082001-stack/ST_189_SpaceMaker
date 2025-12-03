@@ -41,7 +41,7 @@
         android:id="@+id/frmList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="82dp"
+        android:layout_marginBottom="0dp"
         android:background="#291985"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/native_ads" />
@@ -161,6 +161,29 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+
+    <LinearLayout
+        android:id="@+id/deleteSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#291985"
+        app:layout_constraintTop_toBottomOf="@id/cvType"
+        android:orientation="horizontal"
+        android:gravity="end|center_vertical"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/frmList">
+        
+        <ImageView
+            android:id="@+id/btnDeleteSelect"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="16dp"
+            android:src="@drawable/delete_select"
+            />
+    </LinearLayout>
 
     <!--    lnlBottom-->
     <androidx.appcompat.widget.LinearLayoutCompat

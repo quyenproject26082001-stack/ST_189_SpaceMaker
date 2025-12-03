@@ -61,6 +61,9 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
     private val viewModel: MyCreationViewModel by viewModels()
     private val permissionViewModel: PermissionViewModel by viewModels()
 
+    private var myAvatarFragment: MyAvatarFragment? = null
+    private var myDesignFragment: MyDesignFragment? = null
+
     override fun setViewBinding(): ActivityAlbumBinding {
         return ActivityAlbumBinding.inflate(LayoutInflater.from(this))
     }
@@ -68,6 +71,9 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
     override fun initView() {
         viewModel.setTypeStatus(ValueKey.AVATAR_TYPE)
         viewModel.setStatusFrom(intent.getBooleanExtra(IntentKey.FROM_SAVE, false))
+
+        // Hide deleteSection by default
+        binding.deleteSection.gone()
     }
 
     override fun dataObservable() {
@@ -77,18 +83,17 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
                     launch {
                         viewModel.typeStatus.collect { type ->
                             if (type != -1) {
-                                val fragment = if (type == ValueKey.AVATAR_TYPE) {
+                                if (type == ValueKey.AVATAR_TYPE) {
                                     // MyAvatar selected
                                     setupSelectedTab(btnMyAvatar, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
                                     setupUnselectedTab(btnMyDesign, tvMyDesign, imvFocusMyDesign, subTabMyDesign, isLeftTab = false)
-                                    MyAvatarFragment()
+                                    showFragment(ValueKey.AVATAR_TYPE)
                                 } else {
                                     // MyDesign selected
                                     setupSelectedTab(btnMyDesign, tvMyDesign, imvFocusMyDesign, subTabMyDesign, isLeftTab = false)
                                     setupUnselectedTab(btnMyAvatar, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
-                                    MyDesignFragment()
+                                    showFragment(ValueKey.MY_DESIGN_TYPE)
                                 }
-                                startFragment(fragment)
                             }
 
                         }
@@ -127,6 +132,18 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
 
             btnMyAvatar.tap { viewModel.setTypeStatus(ValueKey.AVATAR_TYPE) }
             btnMyDesign.tap { viewModel.setTypeStatus(ValueKey.MY_DESIGN_TYPE) }
+
+            // Delete button in deleteSection
+            btnDeleteSelect.tap {
+                // Trigger delete action from current fragment
+                val currentFragment = supportFragmentManager.findFragmentById(R.id.frmList)
+                if (currentFragment is MyAvatarFragment) {
+                    // Call delete method in MyAvatarFragment
+                    currentFragment.deleteSelectedItems()
+                }
+                // Exit selection mode
+                exitSelectionMode()
+            }
         }
     }
 
@@ -218,11 +235,29 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
         viewModel.downloadFiles(this, list)
     }
 
-    private fun startFragment(fragment: Fragment) {
-        val currentFragment = supportFragmentManager.findFragmentById(R.id.frmList)
-        if (currentFragment?.javaClass != fragment.javaClass) {
-            supportFragmentManager.beginTransaction().replace(R.id.frmList, fragment).commit()
+    private fun showFragment(type: Int) {
+        val transaction = supportFragmentManager.beginTransaction()
+
+        // Initialize fragments if null
+        if (myAvatarFragment == null) {
+            myAvatarFragment = MyAvatarFragment()
+            transaction.add(R.id.frmList, myAvatarFragment!!, "MyAvatarFragment")
         }
+        if (myDesignFragment == null) {
+            myDesignFragment = MyDesignFragment()
+            transaction.add(R.id.frmList, myDesignFragment!!, "MyDesignFragment")
+        }
+
+        // Show/Hide based on type
+        if (type == ValueKey.AVATAR_TYPE) {
+            myAvatarFragment?.let { transaction.show(it) }
+            myDesignFragment?.let { transaction.hide(it) }
+        } else {
+            myAvatarFragment?.let { transaction.hide(it) }
+            myDesignFragment?.let { transaction.show(it) }
+        }
+
+        transaction.commit()
     }
 
     @SuppressLint("MissingSuperCall", "GestureBackNavigation")
@@ -246,6 +281,28 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
     override fun onRestart() {
         super.onRestart()
         initNativeCollab()
+    }
+
+    fun enterSelectionMode() {
+        binding.apply {
+            // Show delete section
+            deleteSection.visible()
+
+            // Hide action bar buttons
+            actionBar.btnActionBarRight.invisible()
+            actionBar.btnActionBarNextToRight.invisible()
+        }
+    }
+
+    fun exitSelectionMode() {
+        binding.apply {
+            // Hide delete section
+            deleteSection.gone()
+
+            // Show action bar buttons
+            actionBar.btnActionBarRight.visible()
+            actionBar.btnActionBarNextToRight.visible()
+        }
     }
 
     private fun setupSelectedTab(

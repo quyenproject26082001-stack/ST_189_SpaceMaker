@@ -187,6 +187,8 @@ class MyAvatarFragment : BaseFragment<FragmentMyAvatarBinding>() {
     private fun handleLongClick(position: Int) {
         viewModel.showLongClick(position)
         handleSelectList(false)
+        // Show deleteSection, hide action bar buttons
+        myAlbumActivity.enterSelectionMode()
     }
 
     private fun handleSelectList(isHide: Boolean) {
@@ -206,6 +208,12 @@ class MyAvatarFragment : BaseFragment<FragmentMyAvatarBinding>() {
         viewModel.loadMyAvatar(myAlbumActivity)
         handleSelectList(true)
         myAlbumActivity.changeImageActionBarRight(true)
+        // Hide deleteSection, show action bar buttons
+        myAlbumActivity.exitSelectionMode()
+    }
+
+    fun deleteSelectedItems() {
+        handleDelete(viewModel.getPathSelected())
     }
 
     private fun handleSelectAll() {
