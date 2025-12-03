@@ -6,7 +6,7 @@ object DomainKey {
     const val SUB_DOMAIN = "/public/app/ST189_SpaceMaker"
     const val HTTP = "https://"
 
-    const val AVATAR_CHARACTER_API = "avatar.webp"
-    const val LAYER_EXTENSION = ".webp"
-    const val IMAGE_NAVIGATION = "nav.webp"
+    const val AVATAR_CHARACTER_API = "avatar.png"
+    const val LAYER_EXTENSION = ".png"
+    const val IMAGE_NAVIGATION = "nav.png"
 }

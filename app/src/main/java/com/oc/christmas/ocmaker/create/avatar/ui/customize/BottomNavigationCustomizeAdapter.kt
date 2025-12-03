@@ -26,7 +26,7 @@ class BottomNavigationCustomizeAdapter(private val context: Context) :
             if (item.isSelected) {
                 vFocus.setBackgroundResource(R.drawable.bg_bottom_navi)
             } else {
-                vFocus.setBackgroundColor(context.getColor(R.color.white))
+                vFocus.setBackgroundColor(context.getColor(android.R.color.transparent))
             }
 
             loadImage(root, item.imageNavigation, imvImage)
