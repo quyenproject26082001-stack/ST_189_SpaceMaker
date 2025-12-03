@@ -93,4 +93,5 @@
     <string name="choose_color">Escolha a cor</string>
     <string name="done">Feito</string>
     <string name="null_edt">Por favor insira o texto</string>
+    <string name="my_space">Space</string>
 </resources>

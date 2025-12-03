@@ -4,6 +4,7 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
@@ -66,11 +67,12 @@ class MyDesignFragment : BaseFragment<FragmentMyDesignBinding>() {
                         binding.layoutNoItem.isVisible = list.isEmpty()
                     }
                 }
-                launch {
-                    viewModel.isLastItem.collect { selectStatus ->
-                        myAlbumActivity.changeImageActionBarRight(selectStatus)
-                    }
-                }
+                // Removed - action bar buttons are disabled
+                // launch {
+                //     viewModel.isLastItem.collect { selectStatus ->
+                //         myAlbumActivity.changeImageActionBarRight(selectStatus)
+                //     }
+                // }
                 launch {
                     myCreationViewModel.typeStatus.collect { status ->
                         resetData()
@@ -101,9 +103,19 @@ class MyDesignFragment : BaseFragment<FragmentMyDesignBinding>() {
                 override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
                 override fun onTouchEvent(recyclerView: RecyclerView, motionEvent: MotionEvent) {}
             })
-            myAlbumActivity.binding.actionBar.btnActionBarRight.tap { handleSelectAll() }
-            myAlbumActivity.binding.actionBar.btnActionBarNextToRight.tap { handleDelete(viewModel.getPathSelected()) }
-            myAlbumActivity.binding.btnDownload.tap { myAlbumActivity.handleDownload(viewModel.getPathSelected()) }
+            // Action bar buttons disabled - no delete button for MyDesign tab yet
+            // myAlbumActivity.binding.actionBar.btnActionBarRight.tap { handleSelectAll() }
+            // myAlbumActivity.binding.actionBar.btnActionBarNextToRight.tap { handleDelete(viewModel.getPathSelected()) }
+
+            // Layout bottom buttons - need to access included layout
+            val layoutBottom = myAlbumActivity.binding.lnlBottom.getChildAt(0)
+            layoutBottom.findViewById<View>(R.id.btnBottomLeft)?.tap {
+                myAlbumActivity.handleShare(viewModel.getPathSelected())
+            }
+            layoutBottom.findViewById<View>(R.id.btnBottomRight)?.tap {
+                myAlbumActivity.handleDownload(viewModel.getPathSelected())
+            }
+
             myDesignAdapter.onItemClick = { pathInternal -> handleItemClick(pathInternal) }
             myDesignAdapter.onItemTick = { position -> viewModel.toggleSelect(position) }
             myDesignAdapter.onDeleteClick = { pathInternal -> handleDelete(arrayListOf(pathInternal)) }
@@ -159,33 +171,14 @@ class MyDesignFragment : BaseFragment<FragmentMyDesignBinding>() {
 
     private fun handleLongClick(position: Int) {
         viewModel.showLongClick(position)
-        handleSelectList(false)
-    }
-
-    private fun handleSelectList(isHide: Boolean) {
-        if (isHide) {
-            myAlbumActivity.binding.actionBar.btnActionBarRight.invisible()
-            myAlbumActivity.binding.actionBar.btnActionBarNextToRight.gone()
-            myAlbumActivity.binding.lnlBottom.gone()
-
-        } else {
-            myAlbumActivity.binding.actionBar.btnActionBarRight.visible()
-            myAlbumActivity.binding.actionBar.btnActionBarNextToRight.gone()
-            myAlbumActivity.binding.lnlBottomTop.gone()
-            myAlbumActivity.binding.lnlBottom.visible()
-        }
+        // Show bottom bar for selection
+        myAlbumActivity.binding.lnlBottom.visible()
     }
 
     private fun resetData() {
         viewModel.loadMyDesign(myAlbumActivity)
-        handleSelectList(true)
-        myAlbumActivity.changeImageActionBarRight(true)
-    }
-
-    private fun handleSelectAll() {
-        val shouldSelectAll = viewModel.myDesignList.value.any { !it.isSelected }
-        myAlbumActivity.changeImageActionBarRight(!shouldSelectAll)
-        viewModel.selectAll(shouldSelectAll)
+        // Hide bottom bar
+        myAlbumActivity.binding.lnlBottom.gone()
     }
     
     override fun onStart() {

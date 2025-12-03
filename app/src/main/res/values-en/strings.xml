@@ -104,4 +104,5 @@
     <string name="choose_color">Choose Color</string>
     <string name="done">Done</string>
     <string name="null_edt">Please enter text</string>
+    <string name="my_space">Space</string>
 </resources>

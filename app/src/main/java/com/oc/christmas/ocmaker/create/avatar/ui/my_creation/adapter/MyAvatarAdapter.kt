@@ -22,8 +22,33 @@ class MyAvatarAdapter(val context: Context) :
     var onEditClick: ((String) -> Unit) = {}
     var onDeleteClick: ((String) -> Unit) = {}
 
+    var isSelectMode: Boolean = false
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     override fun onBind(binding: ItemMyAlbumBinding, item: MyAlbumModel, position: Int) {
         binding.apply {
+            // Adjust margins for first row when in select mode
+            val layoutParams = main.layoutParams as ViewGroup.MarginLayoutParams
+            if (isSelectMode && position < 2) { // First row (positions 0 and 1)
+                layoutParams.setMargins(
+                    UnitHelper.dpToPx(context, 16f).toInt(), // start
+                    UnitHelper.dpToPx(context, 16f).toInt(), // top
+                    UnitHelper.dpToPx(context, 16f).toInt(), // end
+                    UnitHelper.dpToPx(context, 7f).toInt()   // bottom (keep original)
+                )
+            } else {
+                // Normal margins
+                layoutParams.setMargins(
+                    UnitHelper.dpToPx(context, 7f).toInt(),
+                    UnitHelper.dpToPx(context, 7f).toInt(),
+                    UnitHelper.dpToPx(context, 7f).toInt(),
+                    UnitHelper.dpToPx(context, 7f).toInt()
+                )
+            }
+            main.layoutParams = layoutParams
 
             loadImage(root, item.path, imvImage)
 

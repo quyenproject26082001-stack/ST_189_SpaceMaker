@@ -35,6 +35,12 @@ class RandomCharacterAdapter(val context: Context) :
     var onItemClick: ((SuggestionModel) -> Unit) = {}
     override fun onBind(binding: ItemRandomCharacterBinding, item: SuggestionModel, position: Int) {
         binding.apply {
+            Log.d("RandomAdapter", "========================================")
+            Log.d("RandomAdapter", "onBind position: $position")
+            Log.d("RandomAdapter", "Avatar path: ${item.avatarPath}")
+            Log.d("RandomAdapter", "Selected paths count: ${item.pathSelectedList.size}")
+            Log.d("RandomAdapter", "Internal random path: ${item.pathInternalRandom}")
+
             sflShimmer.visible()
             sflShimmer.startShimmer()
             imvImage.invisible()
@@ -44,17 +50,24 @@ class RandomCharacterAdapter(val context: Context) :
 
             val listBitmap: ArrayList<Bitmap> = arrayListOf()
             val handleExceptionCoroutine = CoroutineExceptionHandler { _, throwable ->
-                Log.e("nbhieu", "random_character: ${throwable.message}")
+                Log.e("RandomAdapter", "✗ ERROR at position $position: ${throwable.message}")
+                throwable.printStackTrace()
             }
             CoroutineScope(SupervisorJob() + Dispatchers.IO + handleExceptionCoroutine).launch {
                 val job1 = async {
+                    Log.d("RandomAdapter", "Loading first layer: ${item.pathSelectedList.first()}")
                     val bitmapDefault = Glide.with(context).asBitmap().load(item.pathSelectedList.first()).submit().get()
                     width = bitmapDefault.width/2 ?: ValueKey.WIDTH_BITMAP
                     height = bitmapDefault.height/2 ?: ValueKey.HEIGHT_BITMAP
+                    Log.d("RandomAdapter", "Bitmap size: ${width}x${height}")
+
                     if (items[position].pathInternalRandom == ""){
-                        item.pathSelectedList.forEach { path ->
+                        Log.d("RandomAdapter", "Loading ${item.pathSelectedList.size} layers...")
+                        item.pathSelectedList.forEachIndexed { idx, path ->
+                            Log.d("RandomAdapter", "Loading layer $idx: $path")
                             listBitmap.add(Glide.with(context).asBitmap().load(path).submit(width, height).get())
                         }
+                        Log.d("RandomAdapter", "✓ All layers loaded successfully")
                     }
                     return@async true
                 }
@@ -62,6 +75,7 @@ class RandomCharacterAdapter(val context: Context) :
                 withContext(Dispatchers.Main) {
                     if (job1.await()) {
                         if (items[position].pathInternalRandom == ""){
+                            Log.d("RandomAdapter", "Creating combined bitmap...")
                             val combinedBitmap = createBitmap(width, height)
                             val canvas = Canvas(combinedBitmap)
 
@@ -74,24 +88,33 @@ class RandomCharacterAdapter(val context: Context) :
 
                             MediaHelper.saveBitmapToInternalStorage(context, ValueKey.RANDOM_TEMP_ALBUM, combinedBitmap).collect { state ->
                                 when(state){
-                                    is SaveState.Loading -> {}
-                                    is SaveState.Error -> {}
+                                    is SaveState.Loading -> {
+                                        Log.d("RandomAdapter", "Saving bitmap to internal storage...")
+                                    }
+                                    is SaveState.Error -> {
+                                        Log.e("RandomAdapter", "✗ Failed to save bitmap: ${state.exception.message}")
+                                    }
                                     is SaveState.Success -> {
                                         items[position].pathInternalRandom = state.path
+                                        Log.d("RandomAdapter", "✓ Bitmap saved: ${state.path}")
                                     }
                                 }
                             }
                         }
 
 
+                        Log.d("RandomAdapter", "Loading final image from: ${items[position].pathInternalRandom}")
                         Glide.with(root).load(items[position].pathInternalRandom).listener(object : RequestListener<Drawable> {
                             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable?>, isFirstResource: Boolean): Boolean {
+                                Log.e("RandomAdapter", "✗ Glide load FAILED at position $position: ${e?.message}")
+                                e?.logRootCauses("RandomAdapter")
                                 sflShimmer.stopShimmer()
                                 sflShimmer.gone()
                                 return false
                             }
 
                             override fun onResourceReady(resource: Drawable, model: Any, target: Target<Drawable?>?, dataSource: DataSource, isFirstResource: Boolean): Boolean {
+                                Log.d("RandomAdapter", "✓ Image loaded successfully at position $position")
                                 sflShimmer.stopShimmer()
                                 sflShimmer.gone()
                                 imvImage.visible()

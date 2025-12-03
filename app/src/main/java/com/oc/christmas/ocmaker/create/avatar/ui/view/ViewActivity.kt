@@ -99,10 +99,12 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
                 btnActionBarLeft.tap { handleBackLeftToRight() }
                 btnActionBarRight.tap { handleActionBarRight() }
                 btnActionBarNextToRight.tap { handleEditClick(viewModel.pathInternal.value) }
+                btnShare.tap(1500) { viewModel.shareFiles(this@ViewActivity) }
             }
-            btnShare.tap(1500) { viewModel.shareFiles(this@ViewActivity) }
-            btnBottomLeft.tap { handleBottomBarLeft() }
-            btnBottomRight.tap { handleBottomBarRight() }
+
+            // Access buttons from included layout_bottom
+            includeLayoutBottom.btnBottomLeft.tap { handleBottomBarLeft() }
+            includeLayoutBottom.btnBottomRight.tap { handleBottomBarRight() }
         }
     }
 
@@ -127,8 +129,9 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
                 setImageActionBar(btnActionBarRight, R.drawable.ic_delete_view)
                 setImageActionBar(btnActionBarNextToRight, R.drawable.ic_edit_2)
                 setTextActionBar(tvCenter, getString(R.string.my_character))
+                // Hide btnShare in view mode
+                btnShare.gone()
             }
-            btnShare.gone()
 //            cvImage.apply {
 //                radius = 16f
 //                strokeWidth = 2
@@ -142,11 +145,11 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
 
             tvSuccess.gone()
 
-            btnBottomLeft.text = strings(R.string.share)
-            btnBottomLeft.select()
+            includeLayoutBottom.tvBottomLeft.text = strings(R.string.share)
+            includeLayoutBottom.tvBottomLeft.select()
 
-            btnBottomRight.text = strings(R.string.download)
-            btnBottomRight.select()
+            includeLayoutBottom.tvBottomRight.text = strings(R.string.download)
+            includeLayoutBottom.tvBottomRight.select()
         }
     }
 
@@ -165,8 +168,9 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
             actionBar.apply {
                 setImageActionBar(btnActionBarRight, R.drawable.ic_home)
                 setTextActionBar(tvCenter, getString(R.string.successfully))
+                // Show btnShare in action bar for success mode
+                btnShare.visible()
             }
-            btnShare.visible()
 
 //            cvImage.apply {
 //                radius = 20f
@@ -180,11 +184,11 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
 
             tvSuccess.visible()
 
-            btnBottomLeft.text = strings(R.string.my_album)
-            btnBottomLeft.select()
+            includeLayoutBottom.tvBottomLeft.text = strings(R.string.my_album)
+            includeLayoutBottom.tvBottomLeft.select()
 
-            btnBottomRight.text = strings(R.string.download)
-            btnBottomRight.select()
+            includeLayoutBottom.tvBottomRight.text = strings(R.string.download)
+            includeLayoutBottom.tvBottomRight.select()
         }
     }
 

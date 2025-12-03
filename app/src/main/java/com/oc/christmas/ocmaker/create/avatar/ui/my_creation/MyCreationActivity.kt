@@ -85,13 +85,13 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
                             if (type != -1) {
                                 if (type == ValueKey.AVATAR_TYPE) {
                                     // MyAvatar selected
-                                    setupSelectedTab(btnMyAvatar, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
+                                    setupSelectedTab(btnMySpace, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
                                     setupUnselectedTab(btnMyDesign, tvMyDesign, imvFocusMyDesign, subTabMyDesign, isLeftTab = false)
                                     showFragment(ValueKey.AVATAR_TYPE)
                                 } else {
                                     // MyDesign selected
                                     setupSelectedTab(btnMyDesign, tvMyDesign, imvFocusMyDesign, subTabMyDesign, isLeftTab = false)
-                                    setupUnselectedTab(btnMyAvatar, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
+                                    setupUnselectedTab(btnMySpace, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
                                     showFragment(ValueKey.MY_DESIGN_TYPE)
                                 }
                             }
@@ -130,19 +130,22 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
                 btnActionBarLeft.tap { startIntentWithClearTop(HomeActivity::class.java) }
             }
 
-            btnMyAvatar.tap { viewModel.setTypeStatus(ValueKey.AVATAR_TYPE) }
+            btnMySpace.tap { viewModel.setTypeStatus(ValueKey.AVATAR_TYPE) }
             btnMyDesign.tap { viewModel.setTypeStatus(ValueKey.MY_DESIGN_TYPE) }
 
             // Delete button in deleteSection
-            btnDeleteSelect.tap {
-                // Trigger delete action from current fragment
-                val currentFragment = supportFragmentManager.findFragmentById(R.id.frmList)
-                if (currentFragment is MyAvatarFragment) {
-                    // Call delete method in MyAvatarFragment
+            btnDeleteSelect.setOnClickListener {
+                android.util.Log.d("MyCreationActivity", "btnDeleteSelect clicked!")
+                // Use fragment by tag instead of by ID
+                val currentFragment = supportFragmentManager.findFragmentByTag("MyAvatarFragment")
+                android.util.Log.d("MyCreationActivity", "Current fragment: $currentFragment")
+                if (currentFragment is MyAvatarFragment && currentFragment.isVisible) {
+                    android.util.Log.d("MyCreationActivity", "Calling deleteSelectedItems")
+                    // Call delete method - dialog will handle exit selection mode
                     currentFragment.deleteSelectedItems()
+                } else {
+                    android.util.Log.d("MyCreationActivity", "MyAvatarFragment not visible or not found")
                 }
-                // Exit selection mode
-                exitSelectionMode()
             }
         }
     }
@@ -152,23 +155,17 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
             setImageActionBar(btnActionBarLeft, R.drawable.ic_back)
             setTextActionBar(tvCenter, getString(R.string.my_character))
 
-            btnActionBarRight.setImageResource(R.drawable.ic_not_select_all)
-            btnActionBarNextToRight.setImageResource(R.drawable.ic_delete_white)
+            // Hide action bar buttons - using btnDeleteSelect instead
+            btnActionBarRight.gone()
+            btnActionBarNextToRight.gone()
         }
     }
 
     override fun initText() {
         binding.apply {
-            tvWhatsapp.select()
-            tvTelegram.select()
             tvMyAvatar.select()
             tvMyDesign.select()
         }
-    }
-
-    fun changeImageActionBarRight(isReset: Boolean) {
-        val res = if (isReset) R.drawable.ic_not_select_all else R.drawable.ic_select_all
-        binding.actionBar.btnActionBarRight.setImageResource(res)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -182,6 +179,14 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
                 permissionViewModel.updateStorageGranted(sharePreference, false)
             }
         }
+    }
+
+    fun handleShare(list: ArrayList<String>) {
+        if (list.isEmpty()) {
+            showToast(R.string.please_select_an_image)
+            return
+        }
+        viewModel.shareImages(this, list)
     }
 
     fun handleAddToTelegram(list: ArrayList<String>) {
@@ -286,22 +291,17 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
     fun enterSelectionMode() {
         binding.apply {
             // Show delete section
+            android.util.Log.d("MyCreationActivity", "enterSelectionMode called - showing deleteSection")
             deleteSection.visible()
-
-            // Hide action bar buttons
-            actionBar.btnActionBarRight.invisible()
-            actionBar.btnActionBarNextToRight.invisible()
+            android.util.Log.d("MyCreationActivity", "deleteSection visibility: ${deleteSection.visibility}")
         }
     }
 
     fun exitSelectionMode() {
         binding.apply {
             // Hide delete section
+            android.util.Log.d("MyCreationActivity", "exitSelectionMode called - hiding deleteSection")
             deleteSection.gone()
-
-            // Show action bar buttons
-            actionBar.btnActionBarRight.visible()
-            actionBar.btnActionBarNextToRight.visible()
         }
     }
 

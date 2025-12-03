@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="@color/red_BA"
+        app:strokeColor="@color/transparent"
         app:strokeWidth="2dp">
 
         <!--        imvImage-->

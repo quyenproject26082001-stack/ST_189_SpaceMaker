@@ -119,24 +119,48 @@ class RandomCharacterActivity : BaseActivity<ActivityRandomCharacterBinding>() {
                     }
                 }
 
+                dLog("==========================================================")
+                dLog("RandomCharacter: Starting to process $size characters")
+                dLog("Total data available: ${dataViewModel.allData.value.size}")
+                dLog("POSITION_API: ${ValueKey.POSITION_API}")
+                dLog("==========================================================")
+
                 for (i in 0 until size) {
-                    customizeCharacterViewModel.positionSelected = i
-                    customizeCharacterViewModel.setDataCustomize(dataViewModel.allData.value[i])
-                    customizeCharacterViewModel.updateAvatarPath(customizeCharacterViewModel.dataCustomize.value!!.avatar)
+                    try {
+                        dLog("---------- Processing Character $i ----------")
+                        customizeCharacterViewModel.positionSelected = i
+                        val currentData = dataViewModel.allData.value[i]
+                        dLog("Character name: ${currentData.dataName}")
+                        dLog("Avatar path: ${currentData.avatar}")
+                        dLog("Layer count: ${currentData.layerList.size}")
 
-                    customizeCharacterViewModel.resetDataList()
-                    customizeCharacterViewModel.addValueToItemNavList()
-                    customizeCharacterViewModel.setItemColorDefault()
-                    customizeCharacterViewModel.setBottomNavigationListDefault()
+                        customizeCharacterViewModel.setDataCustomize(currentData)
+                        customizeCharacterViewModel.updateAvatarPath(currentData.avatar)
 
-                    for (i in 0 until ValueKey.RANDOM_QUANTITY) {
-                        customizeCharacterViewModel.setClickRandomFullLayer()
-                        viewModel.updateRandomList(customizeCharacterViewModel.getSuggestionList())
+                        customizeCharacterViewModel.resetDataList()
+                        customizeCharacterViewModel.addValueToItemNavList()
+                        customizeCharacterViewModel.setItemColorDefault()
+                        customizeCharacterViewModel.setBottomNavigationListDefault()
+
+                        for (j in 0 until ValueKey.RANDOM_QUANTITY) {
+                            customizeCharacterViewModel.setClickRandomFullLayer()
+                            val suggestion = customizeCharacterViewModel.getSuggestionList()
+                            dLog("Generated random $j for character $i - Avatar: ${suggestion.avatarPath}")
+                            viewModel.updateRandomList(suggestion)
+                        }
+                        dLog("✓ Character $i completed successfully")
+                    } catch (e: Exception) {
+                        eLog("✗ ERROR processing character $i: ${e.message}")
+                        e.printStackTrace()
                     }
                 }
                 viewModel.upsideDownList()
 
-                dLog("deferred1: ${System.currentTimeMillis() - timeStart1}")
+                dLog("==========================================================")
+                dLog("RandomCharacter: Finished processing")
+                dLog("Total time: ${System.currentTimeMillis() - timeStart1}ms")
+                dLog("Final random list size: ${viewModel.randomList.size}")
+                dLog("==========================================================")
                 return@async true
             }
 
@@ -154,6 +178,12 @@ class RandomCharacterActivity : BaseActivity<ActivityRandomCharacterBinding>() {
             adapter = randomCharacterAdapter
             itemAnimator = null
         }
+        dLog("==========================================================")
+        dLog("initRcv: Submitting ${viewModel.randomList.size} items to adapter")
+        viewModel.randomList.forEachIndexed { index, item ->
+            dLog("Item $index: Avatar=${item.avatarPath}, Layers=${item.pathSelectedList.size}")
+        }
+        dLog("==========================================================")
         randomCharacterAdapter.submitList(viewModel.randomList)
     }
 

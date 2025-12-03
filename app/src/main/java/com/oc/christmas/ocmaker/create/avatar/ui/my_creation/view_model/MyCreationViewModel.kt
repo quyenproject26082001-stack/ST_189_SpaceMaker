@@ -2,6 +2,7 @@ package com.oc.christmas.ocmaker.create.avatar.ui.my_creation.view_model
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
@@ -40,6 +41,25 @@ class MyCreationViewModel : ViewModel() {
     fun setTypeStatus(type: Int){
         if (type == _typeStatus.value) return
         _typeStatus.value = type
+    }
+
+    fun shareImages(context: Context, list: ArrayList<String>) {
+        val uriList = getAllUrisFromList(context, list)
+        if (uriList.isEmpty()) return
+
+        val shareIntent = Intent().apply {
+            action = if (uriList.size == 1) Intent.ACTION_SEND else Intent.ACTION_SEND_MULTIPLE
+            type = "image/*"
+
+            if (uriList.size == 1) {
+                putExtra(Intent.EXTRA_STREAM, uriList[0])
+            } else {
+                putParcelableArrayListExtra(Intent.EXTRA_STREAM, uriList)
+            }
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        }
+
+        context.startActivity(Intent.createChooser(shareIntent, "Share images"))
     }
 
     fun addToTelegram(context: Context, list: ArrayList<String>){

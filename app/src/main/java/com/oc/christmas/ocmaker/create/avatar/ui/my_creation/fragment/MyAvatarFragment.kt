@@ -71,11 +71,12 @@ class MyAvatarFragment : BaseFragment<FragmentMyAvatarBinding>() {
                         binding.layoutNoItem.isVisible = list.isEmpty()
                     }
                 }
-                launch {
-                    viewModel.isLastItem.collect { selectStatus ->
-                        myAlbumActivity.changeImageActionBarRight(selectStatus)
-                    }
-                }
+                // Removed - action bar buttons are disabled
+                // launch {
+                //     viewModel.isLastItem.collect { selectStatus ->
+                //         myAlbumActivity.changeImageActionBarRight(selectStatus)
+                //     }
+                // }
                 launch {
                     myCreationViewModel.typeStatus.collect { status ->
                         resetData()
@@ -106,11 +107,19 @@ class MyAvatarFragment : BaseFragment<FragmentMyAvatarBinding>() {
                 override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
                 override fun onTouchEvent(recyclerView: RecyclerView, motionEvent: MotionEvent) {}
             })
-            myAlbumActivity.binding.actionBar.btnActionBarRight.tap { handleSelectAll() }
-            myAlbumActivity.binding.actionBar.btnActionBarNextToRight.tap { handleDelete(viewModel.getPathSelected()) }
-            myAlbumActivity.binding.btnTelegram.tap { myAlbumActivity.handleAddToTelegram(viewModel.getPathSelected()) }
-            myAlbumActivity.binding.btnWhatsapp.tap { myAlbumActivity.handleAddToWhatsApp(viewModel.getPathSelected()) }
-            myAlbumActivity.binding.btnDownload.tap { myAlbumActivity.handleDownload(viewModel.getPathSelected()) }
+            // Action bar buttons disabled - using btnDeleteSelect instead
+            // myAlbumActivity.binding.actionBar.btnActionBarRight.tap { handleSelectAll() }
+            // myAlbumActivity.binding.actionBar.btnActionBarNextToRight.tap { handleDelete(viewModel.getPathSelected()) }
+
+            // Layout bottom buttons - need to access included layout
+            val layoutBottom = myAlbumActivity.binding.lnlBottom.getChildAt(0)
+            layoutBottom.findViewById<View>(R.id.btnBottomLeft)?.tap {
+                myAlbumActivity.handleShare(viewModel.getPathSelected())
+            }
+            layoutBottom.findViewById<View>(R.id.btnBottomRight)?.tap {
+                myAlbumActivity.handleDownload(viewModel.getPathSelected())
+            }
+
             myAvatarAdapter.onItemClick = { pathInternal -> handleItemClick(pathInternal) }
             myAvatarAdapter.onItemTick = { position -> viewModel.toggleSelect(position) }
             myAvatarAdapter.onEditClick = { pathInternal -> handleEditClick(pathInternal) }
@@ -139,10 +148,14 @@ class MyAvatarFragment : BaseFragment<FragmentMyAvatarBinding>() {
         dialog.onDismissClick = {
             dialog.dismiss()
             myAlbumActivity.hideNavigation()
+            // Exit selection mode when dialog is dismissed
+            resetData()
         }
         dialog.onNoClick = {
             dialog.dismiss()
             myAlbumActivity.hideNavigation()
+            // Exit selection mode when user cancels
+            resetData()
         }
         dialog.onYesClick = {
             lifecycleScope.launch(Dispatchers.IO) {
@@ -150,6 +163,7 @@ class MyAvatarFragment : BaseFragment<FragmentMyAvatarBinding>() {
                 withContext(Dispatchers.Main) {
                     dialog.dismiss()
                     myAlbumActivity.hideNavigation()
+                    // Exit selection mode and reload data
                     resetData()
                 }
             }
@@ -186,42 +200,29 @@ class MyAvatarFragment : BaseFragment<FragmentMyAvatarBinding>() {
 
     private fun handleLongClick(position: Int) {
         viewModel.showLongClick(position)
-        handleSelectList(false)
-        // Show deleteSection, hide action bar buttons
+        // Show deleteSection and bottom bar
+        myAlbumActivity.binding.lnlBottom.visible()
         myAlbumActivity.enterSelectionMode()
-    }
-
-    private fun handleSelectList(isHide: Boolean) {
-        if (isHide) {
-            myAlbumActivity.binding.actionBar.btnActionBarRight.invisible()
-            myAlbumActivity.binding.actionBar.btnActionBarNextToRight.gone()
-            myAlbumActivity.binding.lnlBottom.gone()
-        } else {
-            myAlbumActivity.binding.actionBar.btnActionBarRight.visible()
-            myAlbumActivity.binding.actionBar.btnActionBarNextToRight.visible()
-            myAlbumActivity.binding.lnlBottomTop.visible()
-            myAlbumActivity.binding.lnlBottom.visible()
-        }
+        // Enable select mode margins in adapter
+        myAvatarAdapter.isSelectMode = true
     }
 
     private fun resetData() {
         viewModel.loadMyAvatar(myAlbumActivity)
-        handleSelectList(true)
-        myAlbumActivity.changeImageActionBarRight(true)
-        // Hide deleteSection, show action bar buttons
+        // Hide deleteSection and bottom bar
+        myAlbumActivity.binding.lnlBottom.gone()
         myAlbumActivity.exitSelectionMode()
+        // Disable select mode margins in adapter
+        myAvatarAdapter.isSelectMode = false
     }
 
     fun deleteSelectedItems() {
         handleDelete(viewModel.getPathSelected())
     }
 
-    private fun handleSelectAll() {
-        val shouldSelectAll = viewModel.myAvatarList.value.any { !it.isSelected }
-        myAlbumActivity.changeImageActionBarRight(!shouldSelectAll)
-        viewModel.selectAll(shouldSelectAll)
+    fun exitSelectMode() {
+        myAvatarAdapter.isSelectMode = false
     }
-
 
     override fun onStart() {
         super.onStart()
