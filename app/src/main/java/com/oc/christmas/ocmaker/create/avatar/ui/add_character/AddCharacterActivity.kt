@@ -408,6 +408,7 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
 
     private fun setupTypeBackground(type: Int) {
         binding.apply {
+
             when (type) {
                 ValueKey.IMAGE_BACKGROUND -> {
                     rcvBackgroundImage.visible()
@@ -504,6 +505,15 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
 
             button.setImageResource(res)
             layoutNavigationList[index].isVisible = status
+        }
+
+        // Show sectionTab only when Background navigation is selected
+        binding.apply {
+            if (type == ValueKey.BACKGROUND_NAVIGATION) {
+                sectionTab.visible()
+            } else {
+                sectionTab.gone()
+            }
         }
     }
 

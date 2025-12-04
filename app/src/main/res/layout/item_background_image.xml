@@ -10,7 +10,7 @@
         android:layout_height="0dp"
         app:cardBackgroundColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="6:9"
+        app:layout_constraintDimensionRatio="6:6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -41,25 +41,11 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="15dp"
                     android:adjustViewBounds="true"
                     android:src="@drawable/ic_add_item" />
 
-                <!--                tvAddImage-->
-                <TextView
-                    android:id="@+id/tvAddImage"
-                    style="@style/single_marquee"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="8dp"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:gravity="center"
-                    android:text="@string/add_image"
-                    android:textColor="@color/red_BA"
-                    android:textSize="8sp"
-                    tools:ignore="SmallSp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

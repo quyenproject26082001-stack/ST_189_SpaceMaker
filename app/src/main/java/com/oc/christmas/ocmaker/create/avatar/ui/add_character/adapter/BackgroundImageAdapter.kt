@@ -22,7 +22,6 @@ class BackgroundImageAdapter :
             if (position == 0) {
                 lnlAddItem.visible()
                 imvImage.gone()
-                tvAddImage.select()
                 lnlAddItem.tap { onAddImageClick.invoke() }
             } else {
                 lnlAddItem.gone()
