@@ -101,10 +101,11 @@
     <string name="sticker">Sticker</string>
     <string name="speech_bubbles">Speech Bubbles</string>
     <string name="text">Text</string>
-    <string name="type_your_content">Type your content...</string>
+    <string name="type_your_content">Hello World !!</string>
     <string name="font">Font</string>
     <string name="choose_color">Choose Color</string>
     <string name="done">Done</string>
     <string name="null_edt">Please enter text</string>
     <string name="my_space">Space</string>
+    <string name="input_text">Input text</string>
 </resources>

@@ -85,13 +85,13 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
                             if (type != -1) {
                                 if (type == ValueKey.AVATAR_TYPE) {
                                     // MyAvatar selected
-                                    setupSelectedTab(btnMySpace, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
+                                    setupSelectedTab(btnMySpace, tvSpace, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
                                     setupUnselectedTab(btnMyDesign, tvMyDesign, imvFocusMyDesign, subTabMyDesign, isLeftTab = false)
                                     showFragment(ValueKey.AVATAR_TYPE)
                                 } else {
                                     // MyDesign selected
                                     setupSelectedTab(btnMyDesign, tvMyDesign, imvFocusMyDesign, subTabMyDesign, isLeftTab = false)
-                                    setupUnselectedTab(btnMySpace, tvMyAvatar, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
+                                    setupUnselectedTab(btnMySpace, tvSpace, imvFocusMyAvatar, subTabMyAvatar, isLeftTab = true)
                                     showFragment(ValueKey.MY_DESIGN_TYPE)
                                 }
                             }
@@ -163,7 +163,7 @@ class MyCreationActivity : WhatsappSharingActivity<ActivityAlbumBinding>() {
 
     override fun initText() {
         binding.apply {
-            tvMyAvatar.select()
+            tvSpace.select()
             tvMyDesign.select()
         }
     }

@@ -41,6 +41,7 @@
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         android:src="@drawable/img_cus"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/flFunction"
 
         />
@@ -87,7 +88,7 @@
         android:id="@+id/flFunction"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#FFBFBF"
+        android:background="#291985"
         android:layerType="hardware"
         app:layout_constraintBottom_toTopOf="@+id/lnlBottom"
         app:layout_constraintTop_toBottomOf="@+id/flSave">
@@ -100,53 +101,104 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
-                android:text="@string/background"
-                android:textColor="@color/red_BA"
-                android:textSize="18sp" />
-
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_marginHorizontal="12dp"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal">
 
                 <!--                btnBackgroundImage-->
-                <TextView
+                <FrameLayout
                     android:id="@+id/btnBackgroundImage"
-                    style="@style/single_marquee"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_100_solid_red"
-                    android:fontFamily="@font/roboto_bold"
-                    android:gravity="center"
-                    android:paddingVertical="8dp"
-                    android:text="@string/image"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:layout_weight="1">
+
+                    <!--                imvBgImage (nền)-->
+                    <ImageView
+                        android:id="@+id/imvBgImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+
+                    <TextView
+                        android:id="@+id/subTabImage"
+                        android:layout_width="12dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:background="@drawable/un_selected_tab_sub"
+                        android:visibility="gone" />
+
+                    <!--                imvFocusImage (nền khi chọn)-->
+                    <ImageView
+                        android:id="@+id/imvFocusImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/selected_tab"
+                        android:visibility="visible" />
+
+                    <!--                tvBackgroundImage-->
+                    <TextView
+                        android:id="@+id/tvBackgroundImage"
+                        style="@style/single_marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center"
+                        android:text="@string/image"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                </FrameLayout>
 
                 <!--                btnBackgroundColor-->
-                <TextView
+                <FrameLayout
                     android:id="@+id/btnBackgroundColor"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_100_stroke_red"
-                    android:fontFamily="@font/roboto_bold"
-                    android:gravity="center"
-                    android:paddingVertical="8dp"
-                    android:text="@string/color"
-                    android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1">
+
+                    <!--                imvBgColor (nền)-->
+                    <ImageView
+                        android:id="@+id/imvBgColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+
+                    <TextView
+                        android:id="@+id/subTabColor"
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="start"
+                        android:background="@drawable/un_selected_tab_sub"
+                        android:visibility="gone" />
+
+                    <!--                imvFocusColor (nền xanh khi chọn)-->
+                    <ImageView
+                        android:id="@+id/imvFocusColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:scaleX="1"
+                        android:src="@drawable/un_selected_tab"
+                        android:visibility="gone" />
+
+                    <!--                tvBackgroundColor-->
+                    <TextView
+                        android:id="@+id/tvBackgroundColor"
+                        style="@style/single_marquee"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="center"
+                        android:text="@string/color"
+                        android:textColor="@color/red_BA"
+                        android:textSize="14sp" />
+
+                </FrameLayout>
             </LinearLayout>
 
             <!--            rcvBackgroundImage-->
@@ -182,22 +234,12 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
-                android:text="@string/sticker"
-                android:textColor="@color/red_BA"
-                android:textSize="18sp" />
-
             <!--            rcvSticker-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvSticker"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="4.5dp"
+                android:layout_marginTop="11.5dp"
                 android:paddingHorizontal="7.5dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="5"
@@ -212,22 +254,12 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/roboto_bold"
-                android:gravity="center"
-                android:text="@string/speech_bubbles"
-                android:textColor="@color/red_BA"
-                android:textSize="18sp" />
-
             <!--            rcvSticker-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcvSpeech"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="4.5dp"
+                android:layout_marginTop="11.5dp"
                 android:paddingHorizontal="7.5dp"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="5"
@@ -240,7 +272,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -250,17 +282,17 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginVertical="16dp">
 
                     <TextView
+                        android:id="@+id/tvText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/roboto_bold"
-                        android:gravity="center"
-                        android:text="@string/text"
-                        android:textColor="@color/red_BA"
-                        android:textSize="18sp" />
+                        android:layout_gravity="start"
+                        android:fontFamily="@font/londrina_solid_regular"
+                        android:text="@string/input_text"
+                        android:textSize="16sp" />
 
                     <!--                    btnDoneText-->
                     <ImageView
@@ -269,24 +301,13 @@
                         android:layout_height="24dp"
                         android:layout_gravity="end|center_vertical"
                         android:layout_marginEnd="16dp"
-                        android:src="@drawable/ic_done"
+                        android:src="@drawable/ic_done_background"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/red_BA" />
+                      />
                 </FrameLayout>
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:gravity="start"
-                    android:text="@string/text"
-                    android:textColor="@color/red_BA"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!--            edtText-->
                 <EditText
@@ -303,19 +324,20 @@
                     android:maxLength="30"
                     android:paddingHorizontal="16dp"
                     android:singleLine="true"
-                    android:textColorHint="#99868686"
-                    android:textSize="14sp" />
+                    android:fontFamily="@font/londrina_solid_regular"
+                    android:textColorHint="#808080"
+                    android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tvFont"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/roboto_medium"
+                    android:fontFamily="@font/londrina_solid_regular"
                     android:gravity="start"
                     android:text="@string/font"
-                    android:textColor="@color/red_BA"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <!--            rcvFont-->
                 <androidx.recyclerview.widget.RecyclerView
@@ -330,15 +352,15 @@
                     tools:listitem="@layout/item_font" />
 
                 <TextView
+                    android:id="@+id/tvColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="6dp"
-                    android:fontFamily="@font/roboto_medium"
+                    android:fontFamily="@font/londrina_solid_regular"
                     android:gravity="start"
                     android:text="@string/color"
-                    android:textColor="@color/red_BA"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
 
                 <!--            rcvTextColor-->
                 <androidx.recyclerview.widget.RecyclerView
@@ -380,6 +402,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:paddingVertical="8dp"
+        android:background="#1C1067"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <!--        btnBackground-->

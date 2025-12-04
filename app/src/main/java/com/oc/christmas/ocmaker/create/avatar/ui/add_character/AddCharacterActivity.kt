@@ -5,6 +5,9 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.LinearGradient
+import android.graphics.Shader
 import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
@@ -30,6 +33,7 @@ import com.oc.christmas.ocmaker.create.avatar.core.extensions.loadImage
 import com.oc.christmas.ocmaker.create.avatar.core.extensions.loadNativeCollabAds
 import com.oc.christmas.ocmaker.create.avatar.core.extensions.openImagePicker
 import com.oc.christmas.ocmaker.create.avatar.core.extensions.requestPermission
+import com.oc.christmas.ocmaker.create.avatar.core.extensions.select
 import com.oc.christmas.ocmaker.create.avatar.core.extensions.setFont
 import com.oc.christmas.ocmaker.create.avatar.core.extensions.setImageActionBar
 import com.oc.christmas.ocmaker.create.avatar.core.extensions.showInterAll
@@ -219,12 +223,61 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
         binding.actionBar.apply {
             setImageActionBar(btnActionBarLeft, R.drawable.ic_back)
             setImageActionBar(btnActionBarCenter, R.drawable.ic_reset)
-            setImageActionBar(btnActionBarRight, R.drawable.ic_save)
             btnActionBarRightText.visible()
             tvRightText.isSelected =true
             tvRightText.text = getString(R.string.save)
 
+            // Căn giữa nút reset vào guideline
+            val params = btnActionBarCenter.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
+            params.endToEnd = guideline.id
+            params.startToStart = guideline.id
+            params.horizontalBias = 0.5f
+            params.marginEnd = 0
+            btnActionBarCenter.layoutParams = params
+        }
+    }
 
+    override fun initText() {
+        binding.apply {
+            tvBackgroundImage.select()
+            tvBackgroundColor.select()
+
+            // Apply gradient to tvText, tvFont, tvColor
+            tvText.post {
+                val textHeight = tvText.lineHeight.toFloat()
+                val shader = LinearGradient(
+                    0f, 0f, 0f, textHeight,
+                    Color.parseColor("#8FFFFD"),
+                    Color.parseColor("#2641D7"),
+                    Shader.TileMode.CLAMP
+                )
+                tvText.paint.shader = shader
+                tvText.invalidate()
+            }
+
+            tvFont.post {
+                val textHeight = tvFont.lineHeight.toFloat()
+                val shader = LinearGradient(
+                    0f, 0f, 0f, textHeight,
+                    Color.parseColor("#8FFFFD"),
+                    Color.parseColor("#2641D7"),
+                    Shader.TileMode.CLAMP
+                )
+                tvFont.paint.shader = shader
+                tvFont.invalidate()
+            }
+
+            tvColor.post {
+                val textHeight = tvColor.lineHeight.toFloat()
+                val shader = LinearGradient(
+                    0f, 0f, 0f, textHeight,
+                    Color.parseColor("#8FFFFD"),
+                    Color.parseColor("#2641D7"),
+                    Shader.TileMode.CLAMP
+                )
+                tvColor.paint.shader = shader
+                tvColor.invalidate()
+            }
         }
     }
 
@@ -359,35 +412,86 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
                 ValueKey.IMAGE_BACKGROUND -> {
                     rcvBackgroundImage.visible()
                     rcvBackgroundColor.gone()
-                    btnBackgroundImage.apply {
-                        setTextColor(getColor(R.color.white))
-                        setBackgroundResource(R.drawable.bg_100_solid_red)
-                    }
-                    btnBackgroundColor.apply {
-                        setTextColor(getColor(R.color.red_BA))
-                        setBackgroundResource(R.drawable.bg_100_stroke_red)
-                    }
+                    setupSelectedTabBackground(btnBackgroundImage, tvBackgroundImage, imvFocusImage, subTabImage, isLeftTab = true)
+                    setupUnselectedTabBackground(btnBackgroundColor, tvBackgroundColor, imvFocusColor, subTabColor, isLeftTab = false)
                     backgroundImageAdapter.submitList(viewModel.backgroundImageList)
                 }
 
                 ValueKey.COLOR_BACKGROUND -> {
                     rcvBackgroundImage.gone()
                     rcvBackgroundColor.visible()
-                    btnBackgroundImage.apply {
-                        setTextColor(getColor(R.color.red_BA))
-                        setBackgroundResource(R.drawable.bg_100_stroke_red)
-                    }
-                    btnBackgroundColor.apply {
-                        setTextColor(getColor(R.color.white))
-                        setBackgroundResource(R.drawable.bg_100_solid_red)
-
-                    }
+                    setupSelectedTabBackground(btnBackgroundColor, tvBackgroundColor, imvFocusColor, subTabColor, isLeftTab = false)
+                    setupUnselectedTabBackground(btnBackgroundImage, tvBackgroundImage, imvFocusImage, subTabImage, isLeftTab = true)
                     backgroundColorAdapter.submitList(viewModel.backgroundColorList)
                 }
 
                 else -> {}
             }
         }
+    }
+
+    private fun setupSelectedTabBackground(
+        tabView: View,
+        textView: android.widget.TextView,
+        focusImage: android.widget.ImageView,
+        subTab: View,
+        isLeftTab: Boolean
+    ) {
+        // Set weight = 1.6
+        val params = tabView.layoutParams as android.widget.LinearLayout.LayoutParams
+        params.weight = 1.6f
+        params.topMargin = 0
+        tabView.layoutParams = params
+
+        // Set text size = 18sp
+        textView.textSize = 18f
+
+        // Apply gradient color from top to bottom
+        val textHeight = textView.lineHeight.toFloat()
+        val shader = LinearGradient(
+            0f, 0f, 0f, textHeight,
+            Color.parseColor("#8FFFFD"),
+            Color.parseColor("#2641D7"),
+            Shader.TileMode.CLAMP
+        )
+        textView.paint.shader = shader
+
+        // Show selected_tab drawable
+        focusImage.setImageResource(R.drawable.selected_tab)
+        focusImage.scaleX = 1f
+        focusImage.visible()
+
+        // Hide subTab
+        subTab.gone()
+    }
+
+    private fun setupUnselectedTabBackground(
+        tabView: View,
+        textView: android.widget.TextView,
+        focusImage: android.widget.ImageView,
+        subTab: View,
+        isLeftTab: Boolean
+    ) {
+        // Set weight = 1
+        val params = tabView.layoutParams as android.widget.LinearLayout.LayoutParams
+        params.weight = 1f
+        params.topMargin = UnitHelper.dpToPx(this, 10f).toInt()
+        tabView.layoutParams = params
+
+        // Set text size = 14sp, color = colorPrimary
+        textView.textSize = 14f
+        // Remove gradient shader and set solid color
+        textView.paint.shader = null
+        textView.setTextColor(getColor(R.color.colorPrimary))
+
+        // Show un_selected_tab drawable
+        focusImage.setImageResource(R.drawable.un_selected_tab)
+        // Flip horizontally if on left side
+        focusImage.scaleX = if (isLeftTab) -1f else 1f
+        focusImage.visible()
+
+        // Show subTab
+        subTab.visible()
     }
 
     private fun setupTypeNavigation(type: Int) {

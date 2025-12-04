@@ -33,7 +33,7 @@ class SettingsActivity : BaseActivity<ActivitySettingsBinding>() {
         binding.apply {
             actionBar.btnActionBarLeft.tap { handleBackLeftToRight() }
             btnLang.tap { startIntentRightToLeft(LanguageActivity::class.java, IntentKey.INTENT_KEY) }
-            btnShare.tap(1500) { shareApp() }
+            btnShareApp.tap(1500) { shareApp() }
             btnRate.tap {
                 RateHelper.showRateDialog(this@SettingsActivity, sharePreference){ state ->
                     if (state != RateState.CANCEL){

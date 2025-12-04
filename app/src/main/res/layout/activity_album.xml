@@ -122,9 +122,9 @@
                     android:src="@drawable/selected_tab"
                     android:visibility="visible" />
 
-                <!--                tvMyAvatar-->
+                <!--                tvSpace-->
                 <TextView
-                    android:id="@+id/tvMyAvatar"
+                    android:id="@+id/tvSpace"
                     style="@style/single_marquee"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

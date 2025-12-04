@@ -94,4 +94,5 @@
     <string name="done">Hecho</string>
     <string name="null_edt">Por favor ingresa texto</string>
     <string name="my_space">Space</string>
+    <string name="input_text">Input text</string>
 </resources>

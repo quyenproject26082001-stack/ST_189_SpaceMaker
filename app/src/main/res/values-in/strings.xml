@@ -94,4 +94,5 @@
     <string name="done">Selesai</string>
     <string name="null_edt">Silakan masukkan teks</string>
     <string name="my_space">Space</string>
+    <string name="input_text">Input text</string>
 </resources>

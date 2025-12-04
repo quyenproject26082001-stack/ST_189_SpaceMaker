@@ -8,6 +8,7 @@
     tools:context="com.oc.christmas.ocmaker.create.avatar.ui.SettingsActivity">
 
     <ImageView
+        android:id="@+id/imgBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
@@ -117,7 +118,7 @@
 
             <!--            btnShare-->
             <LinearLayout
-                android:id="@+id/btnShare"
+                android:id="@+id/btnShareApp"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="8dp"
