@@ -4,16 +4,16 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.oc.christmas.ocmaker.create.avatar",
+  "applicationId": "com.oc.space.ocmaker.create",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 3,
-      "versionName": "1.0.2",
-      "outputFile": "ST190_Christmas OC Maker_v1.0.2_11.27.2025-release.apk"
+      "versionCode": 1,
+      "versionName": "1.0.0",
+      "outputFile": "ST189_Space OC_v1.0.2_11.27.2025-release.apk"
     }
   ],
   "elementType": "File",
@@ -22,14 +22,14 @@
       "minApi": 28,
       "maxApi": 30,
       "baselineProfiles": [
-        "baselineProfiles/1/ST190_Christmas OC Maker_v1.0.2_11.27.2025-release.dm"
+        "baselineProfiles/1/ST189_Space OC_v1.0.2_11.27.2025-release.dm"
       ]
     },
     {
       "minApi": 31,
       "maxApi": 2147483647,
       "baselineProfiles": [
-        "baselineProfiles/0/ST190_Christmas OC Maker_v1.0.2_11.27.2025-release.dm"
+        "baselineProfiles/0/ST190_Space OC_v1.0.2_11.27.2025-release.dm"
       ]
     }
   ],

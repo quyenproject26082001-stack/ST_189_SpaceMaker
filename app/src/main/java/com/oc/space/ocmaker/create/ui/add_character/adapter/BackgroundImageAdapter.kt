@@ -1,0 +1,46 @@
+package com.oc.space.ocmaker.create.ui.add_character.adapter
+
+import androidx.core.view.isVisible
+import com.oc.space.ocmaker.create.core.base.BaseAdapter
+import com.oc.space.ocmaker.create.core.extensions.gone
+import com.oc.space.ocmaker.create.core.extensions.loadImage
+import com.oc.space.ocmaker.create.core.extensions.select
+import com.oc.space.ocmaker.create.core.extensions.tap
+import com.oc.space.ocmaker.create.core.extensions.visible
+import com.oc.space.ocmaker.create.data.model.SelectedModel
+import com.oc.space.ocmaker.create.databinding.ItemBackgroundImageBinding
+
+class BackgroundImageAdapter :
+    BaseAdapter<SelectedModel, ItemBackgroundImageBinding>(ItemBackgroundImageBinding::inflate) {
+    var onAddImageClick: (() -> Unit) = {}
+    var onBackgroundImageClick: ((String, Int) -> Unit) = {_,_ ->}
+    var currentSelected = -1
+
+    override fun onBind(binding: ItemBackgroundImageBinding, item: SelectedModel, position: Int) {
+        binding.apply {
+            vFocus.isVisible = item.isSelected
+            if (position == 0) {
+                lnlAddItem.visible()
+                imvImage.gone()
+                lnlAddItem.tap { onAddImageClick.invoke() }
+            } else {
+                lnlAddItem.gone()
+                imvImage.visible()
+                loadImage(root, item.path, imvImage)
+                imvImage.tap { onBackgroundImageClick.invoke(item.path, position) }
+            }
+        }
+    }
+
+    fun submitItem(position: Int, list: ArrayList<SelectedModel>){
+        if (position != currentSelected){
+            items.clear()
+            items.addAll(list)
+
+            notifyItemChanged(currentSelected)
+            notifyItemChanged(position)
+
+            currentSelected = position
+        }
+    }
+}

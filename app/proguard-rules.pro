@@ -81,6 +81,6 @@
 -keep class com.yalantis.ucrop** { *; }
 -keep interface com.yalantis.ucrop** { *; }
 
--keep class com.oc.christmas.ocmaker.create.avatar.ui.splash.SplashActivity.** {*; }
--keep class com.oc.christmas.ocmaker.create.avatar.data.** {*; }
+-keep class com.oc.space.ocmaker.create.ui.splash.SplashActivity.** {*; }
+-keep class com.oc.space.ocmaker.create.data.** {*; }
 -keep public class com.google.android.gms.** { public protected *; }

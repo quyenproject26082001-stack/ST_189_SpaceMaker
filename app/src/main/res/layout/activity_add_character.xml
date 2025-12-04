@@ -85,7 +85,7 @@
             android:scaleType="centerCrop" />
 
         <!--        drawView-->
-        <com.oc.christmas.ocmaker.create.avatar.core.custom.drawview.DrawView
+        <com.oc.space.ocmaker.create.core.custom.drawview.DrawView
             android:id="@+id/drawView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.oc.christmas.ocmaker.create.avatar'
+    namespace 'com.oc.space.ocmaker.create'
     compileSdk 36
 
     defaultConfig {
-        applicationId "com.oc.christmas.ocmaker.create.avatar"
+        applicationId "com.oc.space.ocmaker.create"
         minSdk 24
         targetSdk 36
         versionCode 1
