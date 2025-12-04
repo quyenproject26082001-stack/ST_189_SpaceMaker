@@ -17,7 +17,7 @@ fun Activity.shareApp() {
 }
 
 fun Activity.policy() {
-    val url = "https://sites.google.com/view/christmas-oc-maker-avatar/"
+    val url = "https://sites.google.com/view/space-oc-your-own-character/home"
     val i = Intent(Intent.ACTION_VIEW)
     i.data = url.toUri()
     startActivity(i)
