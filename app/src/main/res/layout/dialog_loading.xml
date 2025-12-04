@@ -25,6 +25,7 @@
                     android:translationY="-20dp"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
+                    app:lottie_colorFilter="@color/white"
                     app:lottie_rawRes="@raw/lottie_splash" />
             </FrameLayout>
 
@@ -34,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:text="@string/wait_a_minute"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/londrina_solid_regular"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:textColor="@color/white"

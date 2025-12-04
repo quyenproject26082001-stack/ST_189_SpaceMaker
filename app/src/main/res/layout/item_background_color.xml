@@ -18,7 +18,7 @@
             android:id="@+id/vFocus"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="3.5dp"
+            android:layout_margin="2.5dp"
             android:visibility="gone"
             android:background="@drawable/bg_10_stroke_yellow" />
 
@@ -34,7 +34,7 @@
             <!--            imvColor-->
             <ImageView
                 android:id="@+id/imvColor"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                  />
