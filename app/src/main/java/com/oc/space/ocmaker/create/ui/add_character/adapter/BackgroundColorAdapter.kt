@@ -22,7 +22,7 @@ class BackgroundColorAdapter :
             vFocus.isVisible = item.isSelected
             if (position == 0) {
                 vFocus.gone()
-                loadImage(root, R.drawable.ic_choose_color, imvColor)
+                loadImage(root, R.drawable.img, imvColor)
                 root.tap { onChooseColorClick.invoke() }
             } else {
                 vFocus.isVisible = item.isSelected

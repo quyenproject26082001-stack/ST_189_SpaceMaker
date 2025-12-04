@@ -677,15 +677,13 @@ open class DrawView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
                         DrawKey.LEFT_BOTTOM -> setupMatrix(icon, x3, y3, rotation)
                         DrawKey.RIGHT_BOTTOM -> setupMatrix(icon, x4, y4, rotation)
                     }
-                    if (icon.positionDefault == DrawKey.RIGHT_BOTTOM) {
-                        if (handlingDraw!!.isText) {
-
-                        }
-                    } else if (icon.positionDefault == DrawKey.RIGHT_TOP) {
+                    if (icon.positionDefault == DrawKey.LEFT_BOTTOM) {
+                        // Don't draw delete icon for character
                         if (!handlingDraw!!.isCharacter) {
                             icon.draw(canvas, borderPaint)
                         }
                     } else {
+                        // Draw all other icons (zoom, flip, etc.)
                         icon.draw(canvas, borderPaint)
                     }
                 }
@@ -782,6 +780,13 @@ open class DrawView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 
     private fun targetCurrentDraw(): BitmapDrawIcon? {
         for (icon in iconList) {
+            // Skip delete icon for character
+            if (handlingDraw?.isCharacter == true) {
+                if (icon.positionDefault == DrawKey.LEFT_BOTTOM) {
+                    continue
+                }
+            }
+
             val x = icon.x - downX
             val y = icon.y - downY
             val distance = x * x + y * y

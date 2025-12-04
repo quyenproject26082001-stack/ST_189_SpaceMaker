@@ -180,7 +180,7 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
 
             tvSuccess.visible()
 
-            includeLayoutBottom.tvBottomLeft.text = strings(R.string.my_album)
+            includeLayoutBottom.tvBottomLeft.text = strings(R.string.my_work)
             includeLayoutBottom.tvBottomLeft.select()
 
             includeLayoutBottom.tvBottomRight.text = strings(R.string.download)

@@ -72,7 +72,7 @@
     <string name="add_to_telegram">Ajouter au télégramme</string>
     <string name="my_avatar">Mon avatar</string>
     <string name="my_design">Ma conception</string>
-    <string name="my_album">Mon album</string>
+    <string name="my_work">Mon album</string>
     <string name="no_app_found_to_handle_this_action">Aucune application trouvée pour gérer cette action</string>
     <string name="invalid_action_msg">Application non installée</string>
     <string name="invalid_action">Erreur</string>

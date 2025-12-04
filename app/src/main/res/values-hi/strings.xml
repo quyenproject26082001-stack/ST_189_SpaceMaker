@@ -72,7 +72,7 @@
     <string name="add_to_telegram">टेलीग्राम में जोड़ें</string>
     <string name="my_avatar">मेरा अवतार</string>
     <string name="my_design">मेरा डिज़ाइन</string>
-    <string name="my_album">मेरे एल्बम</string>
+    <string name="my_work">मेरे एल्बम</string>
     <string name="no_app_found_to_handle_this_action">इस कार्रवाई को संभालने के लिए कोई ऐप नहीं मिला</string>
     <string name="invalid_action_msg">एप्लिकेशन इंस्टॉल नहीं है</string>
     <string name="invalid_action">गलती</string>
