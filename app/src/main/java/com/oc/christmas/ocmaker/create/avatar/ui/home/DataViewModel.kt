@@ -125,7 +125,10 @@ class DataViewModel() : ViewModel() {
             val avatarCharacter = "$baseDomain${DomainKey.SUB_DOMAIN}/${data.name}/${DomainKey.AVATAR_CHARACTER_API}"
             val layerList = ArrayList<LayerListModel>(data.parts.size)
 
-            data.parts.forEachIndexed { indexLayer, dataLayer ->
+            // Sort parts by level in ascending order
+            val sortedParts = data.parts.sortedBy { it.level }
+
+            sortedParts.forEachIndexed { indexLayer, dataLayer ->
                 val layerName = dataLayer.parts.split(AssetsKey.SPLIT_LAYER)
                 val positionCustom = layerName.first().toInt() - 1
                 val positionNavigation = layerName.last().toInt() - 1

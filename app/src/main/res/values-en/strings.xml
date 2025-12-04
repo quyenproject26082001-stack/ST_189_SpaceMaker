@@ -58,7 +58,7 @@
     <string name="please_select_an_image">Please select an image</string>
     <string name="error">Error</string>
     <string name="an_error_occurred">An error occurred, please try again later.</string>
-    <string name="image_has_been_saved_successfully">Image has been saved successfully!</string>
+    <string name="image_has_been_saved_successfully">You have successfully created a character</string>
     <string name="save">Save</string>
     <string name="are_you_sure_want_to_delete_this_item">Are you sure want to delete this item?</string>
     <string name="downloading">Downloading...</string>

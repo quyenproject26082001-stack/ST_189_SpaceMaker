@@ -99,12 +99,12 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
                 btnActionBarLeft.tap { handleBackLeftToRight() }
                 btnActionBarRight.tap { handleActionBarRight() }
                 btnActionBarNextToRight.tap { handleEditClick(viewModel.pathInternal.value) }
-                btnShare.tap(1500) { viewModel.shareFiles(this@ViewActivity) }
+                btnShare.tap(2500) { viewModel.shareFiles(this@ViewActivity) }
             }
 
             // Access buttons from included layout_bottom
-            includeLayoutBottom.btnBottomLeft.tap { handleBottomBarLeft() }
-            includeLayoutBottom.btnBottomRight.tap { handleBottomBarRight() }
+            includeLayoutBottom.btnBottomLeft.tap(2590) { handleBottomBarLeft() }
+            includeLayoutBottom.btnBottomRight.tap(2000) { handleBottomBarRight() }
         }
     }
 
@@ -121,12 +121,8 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
             nativeAds.gone()
             flNativeCollab.visible()
 
-            val marginBottom = lnlBottom.layoutParams as ViewGroup.MarginLayoutParams
-            marginBottom.bottomMargin = UnitHelper.pxToDpInt(this@ViewActivity, 82)
-            lnlBottom.layoutParams = marginBottom
-
             actionBar.apply {
-                setImageActionBar(btnActionBarRight, R.drawable.ic_delete_view)
+               // setImageActionBar(btnActionBarRight, R.drawable.ic_delete_view)
                 setImageActionBar(btnActionBarNextToRight, R.drawable.ic_edit_2)
                 setTextActionBar(tvCenter, getString(R.string.my_character))
                 // Hide btnShare in view mode
@@ -139,7 +135,7 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
 //            }
 
             val params = cvImage.layoutParams as ConstraintLayout.LayoutParams
-            val ratio = if (viewModel.statusFrom == ValueKey.AVATAR_TYPE) "1:1" else "32:39"
+            val ratio = if (viewModel.statusFrom == ValueKey.AVATAR_TYPE) "1:1" else "1:1"
             params.dimensionRatio = ratio
             cvImage.layoutParams = params
 
@@ -166,7 +162,7 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
             flNativeCollab.gone()
 
             actionBar.apply {
-                setImageActionBar(btnActionBarRight, R.drawable.ic_home)
+               // setImageActionBar(btnActionBarRight, R.drawable.ic_home)
                 setTextActionBar(tvCenter, getString(R.string.successfully))
                 // Show btnShare in action bar for success mode
                 btnShare.visible()
