@@ -10,6 +10,7 @@ import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.net.Uri
 import android.text.Editable
+import android.text.SpannableString
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -649,6 +650,7 @@ class AddCharacterActivity : BaseActivity<ActivityAddCharacterBinding>() {
 
     private fun handleFontClick(font: Int, position: Int) {
         binding.apply {
+            edtText.hint = SpannableString(getString(R.string.hello_world))
             edtText.setFont(font)
             tvGetText.setFont(font)
             viewModel.updateTextFontSelected(position)

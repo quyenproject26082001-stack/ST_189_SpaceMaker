@@ -21,9 +21,11 @@ class BackgroundColorAdapter :
         binding.apply {
             vFocus.isVisible = item.isSelected
             if (position == 0) {
+                vFocus.gone()
                 loadImage(root, R.drawable.ic_choose_color, imvColor)
                 root.tap { onChooseColorClick.invoke() }
             } else {
+                vFocus.isVisible = item.isSelected
                 imvColor.setBackgroundColor(item.color)
                 root.tap { onBackgroundColorClick.invoke(item.color, position) }
             }

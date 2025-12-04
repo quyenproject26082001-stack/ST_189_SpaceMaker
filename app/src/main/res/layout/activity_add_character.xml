@@ -287,7 +287,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="none"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -332,7 +332,7 @@
                     android:background="@drawable/bg_8_solid_white"
                     android:ellipsize="end"
                     android:fontFamily="@font/londrina_solid_regular"
-                    android:hint="@string/type_your_content"
+                    android:hint="@string/hello_world"
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:maxLength="30"

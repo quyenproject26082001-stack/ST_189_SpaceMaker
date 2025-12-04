@@ -49,7 +49,7 @@ class BitmapDrawIcon(drawable: Drawable?, @Gravity gravity: Int) : DrawableDraw(
 
 
     fun draw(canvas: Canvas, paint: Paint) {
-        paint.color = "#BA0101".toColorInt()
+        paint.color = "#6DDDD4".toColorInt()
         canvas.drawCircle(x, y, radius, paint)
         super.draw(canvas)
     }

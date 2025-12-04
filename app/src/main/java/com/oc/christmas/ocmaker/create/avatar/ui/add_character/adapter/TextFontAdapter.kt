@@ -22,8 +22,11 @@ class TextFontAdapter(val context: Context) : BaseAdapter<SelectedModel, ItemFon
             val res = if (item.isSelected) R.drawable.bg_100_solid_white else R.drawable.bg_100_stroke_white
             vFocus.setBackgroundResource(res)
 
+            // Show gradient stroke when selected
+            vStroke.isVisible = item.isSelected
+
             tvFont.setFont(item.color)
-            val (color, elevation) = if (item.isSelected) R.color.red_BA to 6f else R.color.white to 0f
+            val (color, elevation) = if (item.isSelected) R.color.dark to 6f else R.color.dark to 0f
             tvFont.setTextColor(context.getColor(color))
             cvMain.cardElevation = elevation
             root.tap { onTextFontClick.invoke(item.color, position) }

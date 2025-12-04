@@ -13,12 +13,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--        vStroke (gradient stroke - renders BEHIND)-->
+        <View
+            android:id="@+id/vStroke"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="6dp"
+            android:background="@drawable/bg_stroke_gradient_circle"
+            android:visibility="gone" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cvMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="6dp"
-            app:cardBackgroundColor="#FFBFBF"
+            android:layout_margin="9dp"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="1000dp"
             app:cardElevation="3dp">
             <!--        vFocus-->
@@ -35,6 +44,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Aa"
+                android:textColor="#000000"
                 android:textSize="18sp" />
         </androidx.cardview.widget.CardView>
 

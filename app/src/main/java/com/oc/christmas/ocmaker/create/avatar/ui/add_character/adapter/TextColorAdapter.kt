@@ -2,6 +2,7 @@ package com.oc.christmas.ocmaker.create.avatar.ui.add_character.adapter
 
 import android.annotation.SuppressLint
 import androidx.core.view.isVisible
+import com.oc.christmas.ocmaker.create.avatar.R
 import com.oc.christmas.ocmaker.create.avatar.core.base.BaseAdapter
 import com.oc.christmas.ocmaker.create.avatar.core.extensions.gone
 import com.oc.christmas.ocmaker.create.avatar.core.extensions.tap
@@ -21,9 +22,9 @@ class TextColorAdapter : BaseAdapter<SelectedModel, ItemTextColorBinding>(ItemTe
             vFocus.isVisible = item.isSelected
 
             if (position == 0) {
-                imvColor.gone()
+                imvColor.visible()
+                imvColor.setImageResource(R.drawable.img0text_color)
                 btnAddColor.visible()
-
                 root.tap { onChooseColorClick.invoke() }
             } else {
                 imvColor.visible()

@@ -14,9 +14,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--        vFocus (stroke - renders BEHIND)-->
+        <View
+            android:id="@+id/vFocus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_stroke_gradient_circle" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="3dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="1000dp"
             app:cardElevation="0dp">
@@ -30,19 +38,12 @@
             <!--            btnAddColor-->
             <ImageView
                 android:id="@+id/btnAddColor"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="7dp"
-                android:src="@drawable/ic_add_color" />
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
 
         </androidx.cardview.widget.CardView>
-
-        <!--        vFocus-->
-        <View
-            android:id="@+id/vFocus"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_1000_stroke_red" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
