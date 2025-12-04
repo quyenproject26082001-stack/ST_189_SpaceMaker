@@ -13,6 +13,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!--        vFocus-->
+        <View
+            android:id="@+id/vFocus"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3.5dp"
+            android:visibility="gone"
+            android:background="@drawable/bg_10_stroke_yellow" />
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,13 +39,5 @@
                 android:layout_height="match_parent"
                  />
         </com.google.android.material.card.MaterialCardView>
-
-        <!--        vFocus-->
-        <View
-            android:id="@+id/vFocus"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="3.5dp"
-            android:background="@drawable/bg_1000_stroke_red" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
