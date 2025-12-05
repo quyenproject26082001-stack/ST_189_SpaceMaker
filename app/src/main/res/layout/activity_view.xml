@@ -31,8 +31,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="visible"
         app:cardBackgroundColor="@color/transparent"
         app:layout_constraintBottom_toTopOf="@+id/tvSuccess"
         app:layout_constraintDimensionRatio="1:1"
@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/montserrat_italic"
         android:gravity="center"
         android:text="@string/image_has_been_saved_successfully"
@@ -74,7 +74,7 @@
         android:layout_marginBottom="272dp"
         android:paddingHorizontal="13dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/native_ads"
+        app:layout_constraintBottom_toBottomOf="parent"
         >
 
         <include
@@ -84,26 +84,26 @@
     </FrameLayout>
 
 
-    <!--    flNativeCollab-->
-    <FrameLayout
-        android:id="@+id/flNativeCollab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
+<!--    &lt;!&ndash;    flNativeCollab&ndash;&gt;-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/flNativeCollab"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
 
-        <include layout="@layout/ads_shimmer_collap_native" />
-    </FrameLayout>
+<!--        <include layout="@layout/ads_shimmer_collap_native" />-->
+<!--    </FrameLayout>-->
 
 
-    <!--    native_ads-->
-    <FrameLayout
-        android:id="@+id/native_ads"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
+<!--    &lt;!&ndash;    native_ads&ndash;&gt;-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/native_ads"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
 
-        <include layout="@layout/ads_native_big_btn_top_shimmer" />
-    </FrameLayout>
+<!--        <include layout="@layout/ads_native_big_btn_top_shimmer" />-->
+<!--    </FrameLayout>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

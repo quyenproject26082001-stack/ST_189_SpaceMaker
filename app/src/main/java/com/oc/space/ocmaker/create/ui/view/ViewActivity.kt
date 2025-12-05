@@ -98,7 +98,7 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
             actionBar.apply {
                 btnActionBarLeft.tap { handleBackLeftToRight() }
                 btnActionBarRight.tap { handleActionBarRight() }
-                btnActionBarNextToRight.tap { handleEditClick(viewModel.pathInternal.value) }
+               // btnActionBarNextToRight.tap { handleEditClick(viewModel.pathInternal.value) }
                 btnShare.tap(2500) { viewModel.shareFiles(this@ViewActivity) }
             }
 
@@ -116,15 +116,16 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
 
     private fun setUpViewUI() {
         binding.apply {
-            loadNativeCollabAds(R.string.native_cl_detail, binding.flNativeCollab, lnlBottom, bottomFailed = 150, bottomLoadSuccess = 82)
+          //  loadNativeCollabAds(R.string.native_cl_detail, binding.flNativeCollab, lnlBottom, bottomFailed = 150, bottomLoadSuccess = 82)
 
-            nativeAds.gone()
-            flNativeCollab.visible()
+          //  nativeAds.visible()
+          //  flNativeCollab.gone()
 
             actionBar.apply {
                // setImageActionBar(btnActionBarRight, R.drawable.ic_delete_view)
-                setImageActionBar(btnActionBarNextToRight, R.drawable.ic_edit_2)
+               // setImageActionBar(btnActionBarNextToRight, R.drawable.ic_edit_2)
                 setTextActionBar(tvCenter, getString(R.string.my_character))
+                setImageActionBar(btnActionBarRight,R.drawable.delete_select)
                 // Hide btnShare in view mode
                 btnShare.gone()
             }
@@ -135,11 +136,10 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
 //            }
 
             val params = cvImage.layoutParams as ConstraintLayout.LayoutParams
-            val ratio = if (viewModel.statusFrom == ValueKey.AVATAR_TYPE) "1:1" else "1:1"
-            params.dimensionRatio = ratio
+            params.dimensionRatio = "1:1"
             cvImage.layoutParams = params
 
-            tvSuccess.gone()
+            tvSuccess.visible()
 
             includeLayoutBottom.tvBottomLeft.text = strings(R.string.share)
             includeLayoutBottom.tvBottomLeft.select()
@@ -151,15 +151,15 @@ class ViewActivity : BaseActivity<ActivityViewBinding>() {
 
     private fun setUpSuccessUI() {
         binding.apply {
-            Admob.getInstance().loadNativeAd(
-                this@ViewActivity,
-                getString(R.string.native_success),
-                binding.nativeAds,
-                R.layout.ads_native_big_btn_top
-            )
+//            Admob.getInstance().loadNativeAd(
+//                this@ViewActivity,
+//                getString(R.string.native_success),
+//                binding.nativeAds,
+//                R.layout.ads_native_big_btn_top
+//            )
 
-            nativeAds.visible()
-            flNativeCollab.gone()
+//            nativeAds.visible()
+//            flNativeCollab.gone()
 
             actionBar.apply {
                // setImageActionBar(btnActionBarRight, R.drawable.ic_home)

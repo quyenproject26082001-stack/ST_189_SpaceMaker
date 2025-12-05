@@ -125,14 +125,14 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
             actionBar.apply {
                 btnActionBarLeft.tap { confirmExit() }
                 btnActionBarCenter.tap { handleReset() }
-                btnActionBarCenterRight.tap { viewModel.setIsFlip() }
+                btnActionBarCenterRight.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { viewModel.setIsFlip() } }
                 binding.actionBar.btnActionBarRightText.tap {
-                    handleSave()
+                    viewModel.checkDataInternet(this@CustomizeCharacterActivity) { handleSave() }
                 }
             }
             btnRandom.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { handleRandomAllLayer() } }
-            btnColor.tap { handleStatusColor() }
-            btnHide.tap { viewModel.setIsHideView() }
+            btnColor.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { handleStatusColor() } }
+            btnHide.tap { viewModel.checkDataInternet(this@CustomizeCharacterActivity) { viewModel.setIsHideView() } }
         }
         handleRcv()
     }
@@ -181,7 +181,7 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
             { position -> viewModel.checkDataInternet(this) { handleChangeColorLayer(position) } }
 
         bottomNavigationCustomizeAdapter.onItemClick =
-            { positionBottomNavigation -> handleClickBottomNavigation(positionBottomNavigation) }
+            { positionBottomNavigation -> viewModel.checkDataInternet(this) { handleClickBottomNavigation(positionBottomNavigation) } }
     }
 
     private fun initData() {
@@ -456,20 +456,18 @@ class CustomizeCharacterActivity : BaseActivity<ActivityCustomizeBinding>() {
         LanguageHelper.setLocale(this)
         dialog.show()
         dialog.onYesClick = {
-            viewModel.checkDataInternet(this) {
-                dialog.dismiss()
-                lifecycleScope.launch(Dispatchers.IO) {
-                    val pathDefault = viewModel.setClickReset()
-                    withContext(Dispatchers.Main) {
-                        viewModel.imageViewList.forEach { imageView ->
-                            Glide.with(this@CustomizeCharacterActivity).clear(imageView)
-                        }
-                        Glide.with(this@CustomizeCharacterActivity).load(pathDefault)
-                            .into(viewModel.imageViewList[viewModel.dataCustomize.value!!.layerList.first().positionCustom])
-                        layerCustomizeAdapter.submitList(viewModel.itemNavList[viewModel.positionNavSelected])
-                        colorLayerCustomizeAdapter.submitList(viewModel.colorItemNavList[viewModel.positionNavSelected])
-                        showInterAll { hideNavigation() }
+            dialog.dismiss()
+            lifecycleScope.launch(Dispatchers.IO) {
+                val pathDefault = viewModel.setClickReset()
+                withContext(Dispatchers.Main) {
+                    viewModel.imageViewList.forEach { imageView ->
+                        Glide.with(this@CustomizeCharacterActivity).clear(imageView)
                     }
+                    Glide.with(this@CustomizeCharacterActivity).load(pathDefault)
+                        .into(viewModel.imageViewList[viewModel.dataCustomize.value!!.layerList.first().positionCustom])
+                    layerCustomizeAdapter.submitList(viewModel.itemNavList[viewModel.positionNavSelected])
+                    colorLayerCustomizeAdapter.submitList(viewModel.colorItemNavList[viewModel.positionNavSelected])
+                    showInterAll { hideNavigation() }
                 }
             }
         }

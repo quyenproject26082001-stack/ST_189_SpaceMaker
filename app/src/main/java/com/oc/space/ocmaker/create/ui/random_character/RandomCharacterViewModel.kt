@@ -33,7 +33,17 @@ class RandomCharacterViewModel : ViewModel() {
             if (result == HandleState.SUCCESS) {
                 action.invoke()
             } else {
-                context.showToast(R.string.please_check_your_internet)
+                // Show No Internet dialog
+                val dialog = com.oc.space.ocmaker.create.dialog.YesNoDialog(
+                    context,
+                    R.string.error,
+                    R.string.please_check_your_internet,
+                    isError = true
+                )
+                dialog.show()
+                dialog.onYesClick = {
+                    dialog.dismiss()
+                }
             }
         }
     }

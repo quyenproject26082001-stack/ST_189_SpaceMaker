@@ -950,7 +950,7 @@ open class DrawView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
         flipIcon.event = FlipEvent()
 
         val editIcon = BitmapDrawIcon(
-            ContextCompat.getDrawable(context, R.drawable.ic_close_1), DrawKey.RIGHT_BOTTOM
+            ContextCompat.getDrawable(context, R.drawable.ic_flip_adjust), DrawKey.RIGHT_BOTTOM
         )
         editIcon.event = EditEvent()
 

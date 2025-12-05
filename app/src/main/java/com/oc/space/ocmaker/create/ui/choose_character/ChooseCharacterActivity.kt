@@ -59,7 +59,17 @@ class ChooseCharacterActivity : BaseActivity<ActivityChooseCharacterBinding>() {
                     if (state == HandleState.SUCCESS) {
                         showInterAll { startIntentRightToLeft(CustomizeCharacterActivity::class.java, position) }
                     } else {
-                        showToast(R.string.please_check_your_internet)
+                        // Show No Internet dialog
+                        val dialog = com.oc.space.ocmaker.create.dialog.YesNoDialog(
+                            this@ChooseCharacterActivity,
+                            R.string.error,
+                            R.string.please_check_your_internet,
+                            isError = true
+                        )
+                        dialog.show()
+                        dialog.onYesClick = {
+                            dialog.dismiss()
+                        }
                     }
                 }
             } else {
